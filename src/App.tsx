@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import CartProductsChart from './components/CartProductsChart/CartProductsChart';
 import CartsList from './components/CartsList/CartsList';
 import './styles.css';
 import { ICart } from './types';
@@ -19,13 +20,13 @@ function App() {
 
   return (
     <div className="wrapper">
-      {carts ? (
-        <CartsList
-          carts={carts}
-          setCarts={setCarts}
-          selectedCart={selectedCart}
-          setSelectedCart={setSelectedCart}></CartsList>
-      ) : null}
+      <CartsList
+        carts={carts}
+        setCarts={setCarts}
+        selectedCart={selectedCart}
+        setSelectedCart={setSelectedCart}
+      />
+      <CartProductsChart selectedCart={selectedCart} />
     </div>
   );
 }

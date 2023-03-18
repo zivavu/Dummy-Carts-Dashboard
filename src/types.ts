@@ -12,6 +12,8 @@ export interface IProduct {
   id: number;
   title: string;
   price: number;
+  discountedPrice: number;
+  discountPercentage: number;
   quantity: number;
   total: number;
 }
