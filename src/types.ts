@@ -2,6 +2,7 @@ export interface ICart {
   id: number;
   products: IProduct[];
   total: number;
+  discountedTotal: number;
   totalProducts: number;
   totalQuantity: number;
   userId: number;
