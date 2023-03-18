@@ -3,12 +3,7 @@ import styles from './CartsList.module.css';
 import ListItem from './ListItem/ListItem';
 import { CartsListProps } from './types';
 
-const CartsList = ({
-  carts,
-  setCarts,
-  selectedCart,
-  setSelectedCart,
-}: CartsListProps) => {
+const CartsList = ({ carts, setCarts, selectedCart, setSelectedCart }: CartsListProps) => {
   return (
     <div className={styles.list}>
       {carts.map((cart) => {

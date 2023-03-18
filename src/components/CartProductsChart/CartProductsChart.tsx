@@ -29,23 +29,12 @@ const CartProductsChart = ({ selectedCart }: CartProductsChartProps) => {
         height={800}
         data={data}>
         <CartesianGrid />
-        <XAxis
-          dataKey="title"
-          tick={<CustomTickText />}
-          minTickGap={-200}
-          name="Name"
-        />
+        <XAxis dataKey="title" tick={<CustomTickText />} minTickGap={-200} name="Name" />
         <YAxis>
           <Label value="Price" position="insideTop" offset={-30}></Label>
         </YAxis>
         <Tooltip labelFormatter={() => ''} />
-        <Scatter
-          type="monotone"
-          dataKey="price"
-          name="Price"
-          line
-          fill="#8884d8"
-        />
+        <Scatter type="monotone" dataKey="price" name="Price" line fill="#8884d8" />
         <Scatter
           type="monotone"
           dataKey="discountedPrice"

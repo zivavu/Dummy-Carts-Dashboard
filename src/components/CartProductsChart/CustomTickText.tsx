@@ -9,7 +9,7 @@ const CustomTickText = (props: any) => {
       x={x}
       y={y}
       style={{ wordWrap: 'break-word' }}
-      width={500}
+      width={140}
       dominantBaseline="central"
       textAnchor="middle"
       fontSize="0.8rem"
