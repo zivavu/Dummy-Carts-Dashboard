@@ -14,7 +14,6 @@ function App() {
       const json = await data.json();
       setCarts(json.carts);
     };
-
     fetchCarts().catch(console.error);
   }, []);
 

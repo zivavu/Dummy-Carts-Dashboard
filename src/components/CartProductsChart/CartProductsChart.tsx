@@ -7,11 +7,13 @@ import {
   LineChart,
   Scatter,
   ScatterChart,
+  Text,
   Tooltip,
   XAxis,
   YAxis,
 } from 'recharts';
 import styles from './CartProductsChart.module.css';
+import CustomTickText from './CustomTickText';
 import { CartProductsChartProps } from './types';
 
 const CartProductsChart = ({ selectedCart }: CartProductsChartProps) => {
@@ -21,20 +23,27 @@ const CartProductsChart = ({ selectedCart }: CartProductsChartProps) => {
   });
   return (
     <div className={styles.chartWrapper}>
-      <ScatterChart width={800} height={800} data={data}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="title" fontSize="0.8rem" />
+      <ScatterChart
+        margin={{ top: 50, bottom: 100, right: 100 }}
+        width={800}
+        height={800}
+        data={data}>
+        <CartesianGrid />
+        <XAxis
+          dataKey="title"
+          tick={<CustomTickText />}
+          minTickGap={-200}
+          name="Name"
+        />
         <YAxis>
-          <Label value="Price" position="insideTop"></Label>
+          <Label value="Price" position="insideTop" offset={-30}></Label>
         </YAxis>
-        <Tooltip />
-        <Legend />
+        <Tooltip labelFormatter={() => ''} />
         <Scatter
           type="monotone"
           dataKey="price"
           name="Price"
           line
-          stroke="#8884d8"
           fill="#8884d8"
         />
         <Scatter
@@ -43,7 +52,6 @@ const CartProductsChart = ({ selectedCart }: CartProductsChartProps) => {
           name="Discounted price"
           line
           fill="#8884d8"
-          stroke="#8884d8"
         />
       </ScatterChart>
     </div>
