@@ -5,6 +5,7 @@ import { ICart } from './types';
 
 function App() {
   const [carts, setCarts] = useState<ICart[]>([]);
+  const [selectedCart, setSelectedCart] = useState<ICart>();
 
   useEffect(() => {
     const fetchCarts = async () => {
@@ -18,7 +19,13 @@ function App() {
 
   return (
     <div className="wrapper">
-      {carts ? <CartsList carts={carts} setCarts={setCarts}></CartsList> : null}
+      {carts ? (
+        <CartsList
+          carts={carts}
+          setCarts={setCarts}
+          selectedCart={selectedCart}
+          setSelectedCart={setSelectedCart}></CartsList>
+      ) : null}
     </div>
   );
 }
