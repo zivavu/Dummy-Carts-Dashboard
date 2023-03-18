@@ -4,10 +4,14 @@ body {
   margin: 0;
   background-color: #f9f9f9;
 }
+button {
+  cursor: pointer;
+}
 .wrapper {
   width: min(100vw, 1340px);
   margin: auto;
   margin-top: 20px;
   display: flex;
   background-color: white;
+  box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.2);
 }

@@ -12,7 +12,8 @@ function App() {
     const fetchCarts = async () => {
       const data = await fetch('https://dummyjson.com/carts');
       const json = await data.json();
-      setCarts(json.carts);
+      setCarts(json.carts as ICart[]);
+      console.log(json.carts);
     };
     fetchCarts().catch(console.error);
   }, []);
