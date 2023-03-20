@@ -7,7 +7,7 @@ body {
 button {
   cursor: pointer;
 }
-.wrapper {
+.cartsWrapper {
   width: min(100vw, 1340px);
   margin: auto;
   margin-top: 20px;

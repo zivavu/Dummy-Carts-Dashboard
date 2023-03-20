@@ -23,32 +23,30 @@ const CartProductsChart = ({ selectedCart }: CartProductsChartProps) => {
       const { title, price, discountedPrice } = product;
       return { title, price, discountedPrice };
     });
-  return (
-    data && (
-      <div className={styles.chartWrapper}>
-        <ScatterChart
-          margin={{ top: 50, bottom: 100, right: 100 }}
-          width={800}
-          height={800}
-          data={data}>
-          <CartesianGrid />
-          <XAxis dataKey="title" tick={<CustomTickText />} minTickGap={-200} name="Name" />
-          <YAxis>
-            <Label value="Price" position="insideTop" offset={-30}></Label>
-          </YAxis>
-          <Tooltip labelFormatter={() => ''} itemStyle={{ textTransform: 'capitalize' }} />
-          <Scatter type="monotone" dataKey="price" name="Price" line fill="#8884d8" />
-          <Scatter
-            type="monotone"
-            dataKey="discountedPrice"
-            name="Discounted price"
-            line
-            fill="#8884d8"
-          />
-        </ScatterChart>
-      </div>
-    )
-  );
+  return data ? (
+    <div className={styles.chartWrapper}>
+      <ScatterChart
+        margin={{ top: 50, bottom: 100, right: 100 }}
+        width={800}
+        height={800}
+        data={data}>
+        <CartesianGrid />
+        <XAxis dataKey="title" tick={<CustomTickText />} minTickGap={-200} name="Name" />
+        <YAxis>
+          <Label value="Price" position="insideTop" offset={-30}></Label>
+        </YAxis>
+        <Tooltip labelFormatter={() => ''} itemStyle={{ textTransform: 'capitalize' }} />
+        <Scatter type="monotone" dataKey="price" name="Price" line fill="#8884d8" />
+        <Scatter
+          type="monotone"
+          dataKey="discountedPrice"
+          name="Discounted price"
+          line
+          fill="#8884d8"
+        />
+      </ScatterChart>
+    </div>
+  ) : null;
 };
 
 export default CartProductsChart;
