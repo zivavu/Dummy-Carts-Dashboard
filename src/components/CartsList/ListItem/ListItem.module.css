@@ -34,10 +34,11 @@
 
 .deleteButton {
   border: none;
-  background-color: rgb(255, 184, 184);
+  background-color: rgb(255, 201, 201);
+  border-bottom: 1px solid var(--gray30);
 }
 .deleteButton:hover {
-  background-color: rgb(255, 135, 135);
+  background-color: rgb(255, 117, 117);
 }
 
 .deleteSVG {

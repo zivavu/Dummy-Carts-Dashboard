@@ -15,7 +15,35 @@ function App() {
         const data = await fetch('https://dummyjson.com/carts');
         const json = await data.json();
         setCarts(json.carts as ICart[]);
-        console.log(json.carts);
+      } catch {
+        console.error(console.error);
+      }
+    };
+    fetchCarts();
+  }, []);
+
+  useEffect(() => {
+    const fetchCarts = async () => {
+      try {
+        fetch('https://dummyjson.com/carts/add', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            userId: 1,
+            products: [
+              {
+                id: 1,
+                quantity: 1,
+              },
+              {
+                id: 50,
+                quantity: 2,
+              },
+            ],
+          }),
+        })
+          .then((res) => res.json())
+          .then(console.log);
       } catch {
         console.error(console.error);
       }
@@ -24,9 +52,9 @@ function App() {
   }, []);
 
   return (
-    <div className={styles.contentWrapper}>
+    <div className={styles.aplicationWrapper}>
       <SiteHeading />
-      <main className={styles.cartsWrapper}>
+      <main className={styles.dashboardWrapper}>
         <CartsList
           carts={carts}
           setCarts={setCarts}

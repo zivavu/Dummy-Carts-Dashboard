@@ -1,24 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
+import NewCartDialog from '../NewCartDialog/NewCartDialog';
 import styles from './SiteHeading.module.css';
 
 const SiteHeading = () => {
+  const [showModal, setShowModal] = useState(false);
+  console.log(showModal);
+
   return (
     <header className={styles.siteHeading}>
-      <h1
-        style={{
-          fontWeight: `600`,
-          fontSize: `2.4rem`,
-          margin: 0,
+      <div>
+        <h1
+          style={{
+            fontWeight: `600`,
+            fontSize: `2.4rem`,
+            margin: 0,
+          }}>
+          Dummy Carts Dashboard
+        </h1>
+        <h4
+          style={{
+            margin: 0,
+            letterSpacing: `0.15rem`,
+          }}>
+          By Tomasz Kierzenkowski
+        </h4>
+      </div>
+      <button
+        className={styles.newCartButton}
+        onClick={() => {
+          setShowModal(true);
         }}>
-        Dummy Carts Dashboard
-      </h1>
-      <h4
-        style={{
-          margin: 0,
-          letterSpacing: `0.15rem`,
-        }}>
-        By Tomasz Kierzenkowski
-      </h4>
+        <span style={{ textTransform: `none` }}>Add a new cart</span>
+      </button>
+      {showModal && createPortal(<NewCartDialog setShowModal={setShowModal} />, document.body)}
     </header>
   );
 };
