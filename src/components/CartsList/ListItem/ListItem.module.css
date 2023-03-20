@@ -11,7 +11,7 @@
   color: var(--gray60);
   width: 100%;
   align-items: flex-end;
-  padding: 6px 0;
+  padding: 9px 0;
   cursor: pointer;
   border: none;
   border-bottom: 1px solid var(--gray30);
@@ -34,10 +34,10 @@
 
 .deleteButton {
   border: none;
-  background-color: rgb(255, 113, 113);
+  background-color: rgb(255, 184, 184);
 }
 .deleteButton:hover {
-  background-color: rgb(235, 57, 57);
+  background-color: rgb(255, 135, 135);
 }
 
 .deleteSVG {

@@ -32,6 +32,7 @@ const ListItem = ({ cart, selectedCart, setSelectedCart, carts, setCarts }: List
         onClick={handleCartSelect}>
         <span className={listStyles.firstColumn}>#{cart.id}</span>
         <span className={listStyles.secondColumn}> {cart.total}$</span>
+        <span className={listStyles.thirdColumn}>{cart.discountedTotal}$</span>
       </button>
       <button
         onClick={handleCartDelete}

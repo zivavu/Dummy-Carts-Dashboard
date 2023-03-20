@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from './App.module.css';
 import CartProductsChart from './components/CartProductsChart/CartProductsChart';
 import CartsList from './components/CartsList/CartsList';
-import SiteHeader from './components/SiteHeader/SiteHeader';
+import SiteHeading from './components/SiteHeading/SiteHeading';
 import { ICart } from './types';
 
 function App() {
@@ -15,6 +15,7 @@ function App() {
         const data = await fetch('https://dummyjson.com/carts');
         const json = await data.json();
         setCarts(json.carts as ICart[]);
+        console.log(json.carts);
       } catch {
         console.error(console.error);
       }
@@ -24,7 +25,7 @@ function App() {
 
   return (
     <div className={styles.contentWrapper}>
-      <SiteHeader />
+      <SiteHeading />
       <main className={styles.cartsWrapper}>
         <CartsList
           carts={carts}

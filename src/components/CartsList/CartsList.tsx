@@ -6,10 +6,13 @@ import { CartsListProps } from './types';
 
 const CartsList = ({ carts, setCarts, selectedCart, setSelectedCart }: CartsListProps) => {
   return (
-    <div className={styles.list}>
+    <aside className={styles.list}>
+      <h2 className={styles.listTitle}>Your Carts</h2>
       <div className={styles.listHeader}>
         <span className={styles.firstColumn}>ID</span>
-        <span className={styles.secondColumn}>Cart' total</span>
+        <span className={styles.secondColumn}>Total Price</span>
+        <span className={styles.thirdColumn}>Discounted To</span>
+
         <div style={{ marginLeft: `auto` }} className={styles.deleteButtonColumn}>
           <img
             src={TrashCanSVG}
@@ -29,7 +32,7 @@ const CartsList = ({ carts, setCarts, selectedCart, setSelectedCart }: CartsList
             setSelectedCart={setSelectedCart}></ListItem>
         );
       })}
-    </div>
+    </aside>
   );
 };
 

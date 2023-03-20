@@ -1,17 +1,5 @@
 import React from 'react';
-import {
-  CartesianGrid,
-  Label,
-  Legend,
-  Line,
-  LineChart,
-  Scatter,
-  ScatterChart,
-  Text,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from 'recharts';
+import { CartesianGrid, Label, Scatter, ScatterChart, Tooltip, XAxis, YAxis } from 'recharts';
 import styles from './CartProductsChart.module.css';
 import CustomTickText from './CustomTickText';
 import { CartProductsChartProps } from './types';
@@ -24,7 +12,7 @@ const CartProductsChart = ({ selectedCart }: CartProductsChartProps) => {
   return data ? (
     <div className={styles.chartWrapper}>
       <ScatterChart
-        margin={{ top: 45, bottom: 100, right: 100 }}
+        margin={{ top: 50, bottom: 50, left: 20, right: 80 }}
         width={800}
         height={800}
         data={data}>
