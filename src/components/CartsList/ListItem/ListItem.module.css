@@ -1,3 +1,4 @@
+@import './../../../colors.module.css';
 .item {
   display: flex;
   justify-content: space-between;
@@ -7,20 +8,20 @@
 .fullSizeSelectButton {
   display: flex;
   background-color: white;
-  color: #7b7b7b;
+  color: var(--gray60);
   width: 100%;
   align-items: flex-end;
   padding: 6px 0;
   cursor: pointer;
   border: none;
-  border-bottom: 1px solid #e2e2e2;
+  border-bottom: 1px solid var(--gray30);
 }
 
 .fullSizeSelectButton:hover {
-  background-color: #f5f5f5;
+  background-color: var(--gray10);
 }
 .active {
-  background-color: #f5f5f5;
+  background-color: var(--gray10);
   color: black;
 }
 
@@ -39,10 +40,9 @@
   background-color: rgb(235, 57, 57);
 }
 
-.deleteButton:hover .deleteSVG {
-  filter: opacity(1);
-}
-
 .deleteSVG {
   filter: opacity(0);
+}
+.deleteButton:hover .deleteSVG {
+  filter: opacity(1);
 }

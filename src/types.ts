@@ -6,7 +6,6 @@ export interface ICart {
   totalProducts: number;
   totalQuantity: number;
   userId: number;
-  isDeleted: boolean;
 }
 
 export interface IProduct {

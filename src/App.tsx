@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from './App.module.css';
 import CartProductsChart from './components/CartProductsChart/CartProductsChart';
 import CartsList from './components/CartsList/CartsList';
+import SiteHeader from './components/SiteHeader/SiteHeader';
 import { ICart } from './types';
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
 
   return (
     <div className={styles.contentWrapper}>
-      <header className={styles.siteHeader}></header>
+      <SiteHeader />
       <main className={styles.cartsWrapper}>
         <CartsList
           carts={carts}

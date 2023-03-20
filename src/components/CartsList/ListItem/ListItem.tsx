@@ -40,7 +40,7 @@ const ListItem = ({ cart, selectedCart, setSelectedCart, carts, setCarts }: List
           src={TrashCanSVG}
           alt="basket"
           className={styles.deleteSVG}
-          style={{ width: `20px` }}></img>
+          style={{ width: `18px` }}></img>
       </button>
     </div>
   );

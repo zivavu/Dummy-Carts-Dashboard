@@ -9,7 +9,7 @@ const CartsList = ({ carts, setCarts, selectedCart, setSelectedCart }: CartsList
     <div className={styles.list}>
       <div className={styles.listHeader}>
         <span className={styles.firstColumn}>ID</span>
-        <span className={styles.secondColumn}>Cart total</span>
+        <span className={styles.secondColumn}>Cart' total</span>
         <div style={{ marginLeft: `auto` }} className={styles.deleteButtonColumn}>
           <img
             src={TrashCanSVG}

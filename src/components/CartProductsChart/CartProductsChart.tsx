@@ -17,23 +17,21 @@ import CustomTickText from './CustomTickText';
 import { CartProductsChartProps } from './types';
 
 const CartProductsChart = ({ selectedCart }: CartProductsChartProps) => {
-  const data =
-    !selectedCart?.isDeleted &&
-    selectedCart?.products.map((product) => {
-      const { title, price, discountedPrice } = product;
-      return { title, price, discountedPrice };
-    });
+  const data = selectedCart?.products.map((product) => {
+    const { title, price, discountedPrice } = product;
+    return { title, price, discountedPrice };
+  });
   return data ? (
     <div className={styles.chartWrapper}>
       <ScatterChart
-        margin={{ top: 50, bottom: 100, right: 100 }}
+        margin={{ top: 45, bottom: 100, right: 100 }}
         width={800}
         height={800}
         data={data}>
         <CartesianGrid />
         <XAxis dataKey="title" tick={<CustomTickText />} minTickGap={-200} name="Name" />
         <YAxis>
-          <Label value="Price" position="insideTop" offset={-30}></Label>
+          <Label value="Price" position="insideTop" offset={-25}></Label>
         </YAxis>
         <Tooltip labelFormatter={() => ''} itemStyle={{ textTransform: 'capitalize' }} />
         <Scatter type="monotone" dataKey="price" name="Price" line fill="#8884d8" />
