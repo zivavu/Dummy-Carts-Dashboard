@@ -10,12 +10,15 @@ function App() {
 
   useEffect(() => {
     const fetchCarts = async () => {
-      const data = await fetch('https://dummyjson.com/carts');
-      const json = await data.json();
-      setCarts(json.carts as ICart[]);
-      console.log(json.carts);
+      try {
+        const data = await fetch('https://dummyjson.com/carts');
+        const json = await data.json();
+        setCarts(json.carts as ICart[]);
+      } catch {
+        console.error(console.error);
+      }
     };
-    fetchCarts().catch(console.error);
+    fetchCarts();
   }, []);
 
   return (

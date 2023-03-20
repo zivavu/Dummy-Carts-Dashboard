@@ -5,7 +5,7 @@ import { ICart } from '../../../types';
 import styles from './ListItem.module.css';
 import { ListItemProps } from './types';
 
-const ListItem = ({ cart, isSelected, setSelectedCart, carts, setCarts }: ListItemProps) => {
+const ListItem = ({ cart, selectedCart, setSelectedCart, carts, setCarts }: ListItemProps) => {
   const handleCartSelect = () => {
     setSelectedCart(cart);
   };
@@ -15,10 +15,15 @@ const ListItem = ({ cart, isSelected, setSelectedCart, carts, setCarts }: ListIt
       method: 'DELETE',
     });
     const responseCart = await data.json();
-    const newCarts = carts.map((oldCart) => (oldCart.id === cart.id ? responseCart : oldCart));
+    const newCarts = carts.filter((oldCart) => oldCart.id !== responseCart.id) as ICart[];
     setCarts(newCarts);
+
+    if (selectedCart?.id === responseCart.id) {
+      setSelectedCart(undefined);
+    }
   };
 
+  const isSelected = selectedCart === cart;
   return (
     <div className={styles.item}>
       <button

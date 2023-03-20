@@ -8,15 +8,13 @@ const CartsList = ({ carts, setCarts, selectedCart, setSelectedCart }: CartsList
     <div className={styles.list}>
       {carts.map((cart) => {
         return (
-          !cart.isDeleted && (
-            <ListItem
-              key={cart.id}
-              cart={cart}
-              carts={carts}
-              setCarts={setCarts}
-              isSelected={selectedCart === cart}
-              setSelectedCart={setSelectedCart}></ListItem>
-          )
+          <ListItem
+            key={cart.id}
+            cart={cart}
+            carts={carts}
+            setCarts={setCarts}
+            selectedCart={selectedCart}
+            setSelectedCart={setSelectedCart}></ListItem>
         );
       })}
     </div>
