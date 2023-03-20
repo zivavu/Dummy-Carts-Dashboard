@@ -1,12 +1,17 @@
 @import './../../colors.module.css';
+
 .siteHeader {
   width: 100%;
-  background-color: var(--gray20);
-  font-size: 1.5rem;
+  background-color: #c7568f;
+  font-size: 2rem;
   font-weight: 600;
-  height: 60px;
-  padding: 0 20px;
+  height: 100px;
+  padding: 0 50px;
   box-sizing: border-box;
+  box-shadow: 0 -1px 2px 0.1px var(--gray50);
   display: flex;
   align-items: center;
+  color: white;
+  border-top-right-radius: var(--content-wrapper-border-radius);
+  border-top-left-radius: var(--content-wrapper-border-radius);
 }
