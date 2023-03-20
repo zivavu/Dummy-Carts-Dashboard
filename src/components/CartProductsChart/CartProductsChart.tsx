@@ -34,13 +34,21 @@ const CartProductsChart = ({ selectedCart }: CartProductsChartProps) => {
           <Label value="Price" position="insideTop" offset={-25}></Label>
         </YAxis>
         <Tooltip labelFormatter={() => ''} itemStyle={{ textTransform: 'capitalize' }} />
-        <Scatter type="monotone" dataKey="price" name="Price" line fill="#8884d8" />
+        <Scatter
+          type="monotone"
+          dataKey="price"
+          name="Price"
+          line
+          fill="#5b58d6"
+          isAnimationActive={false}
+        />
         <Scatter
           type="monotone"
           dataKey="discountedPrice"
           name="Discounted price"
           line
-          fill="#8884d8"
+          fill="#49b349"
+          isAnimationActive={false}
         />
       </ScatterChart>
     </div>
