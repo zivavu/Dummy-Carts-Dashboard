@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import NewCartDialog from '../NewCartDialog/NewCartDialog';
 import styles from './SiteHeading.module.css';
+import { SiteHeadingProps } from './types';
 
-const SiteHeading = () => {
+const SiteHeading = ({ setCarts }: SiteHeadingProps) => {
   const [showModal, setShowModal] = useState(false);
-  console.log(showModal);
 
   return (
     <header className={styles.siteHeading}>
@@ -33,7 +33,11 @@ const SiteHeading = () => {
         }}>
         <span style={{ textTransform: `none` }}>Add a new cart</span>
       </button>
-      {showModal && createPortal(<NewCartDialog setShowModal={setShowModal} />, document.body)}
+      {showModal &&
+        createPortal(
+          <NewCartDialog setShowModal={setShowModal} setCarts={setCarts} />,
+          document.body
+        )}
     </header>
   );
 };
