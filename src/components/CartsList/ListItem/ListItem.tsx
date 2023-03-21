@@ -20,6 +20,7 @@ const ListItem = ({ cart, selectedCart, setSelectedCart, carts, setCarts }: List
     setCarts(newCarts);
 
     if (selectedCart?.id === responseCart.id) {
+      console.log('dfsdfssdf');
       setSelectedCart(undefined);
     }
   };

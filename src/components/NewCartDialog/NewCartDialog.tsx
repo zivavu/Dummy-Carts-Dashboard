@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ClickAwayListener from './ClickAwayListener';
 import styles from './NewCartDialog.module.css';
+import ProductAutocompleteInput from './ProductAutocompleteInput';
 import { NewCartDialogProps } from './types';
 
 const NewCartDialog = ({ setShowModal, setCarts }: NewCartDialogProps) => {
@@ -11,14 +12,13 @@ const NewCartDialog = ({ setShowModal, setCarts }: NewCartDialogProps) => {
       try {
         const data = await fetch('https://dummyjson.com/products');
         const json = await data.json();
-        setProductsList(json);
+        setProductsList(json.products);
       } catch {
         console.error(console.error);
       }
     };
     fetchProducts();
   }, []);
-  console.log(productsList);
 
   useEffect(() => {
     const fetchCarts = async () => {
@@ -51,11 +51,13 @@ const NewCartDialog = ({ setShowModal, setCarts }: NewCartDialogProps) => {
   };
   return (
     <ClickAwayListener clickAwayHandler={clickAwayHandler}>
-      <div className={styles.newCartFormContainer}>
+      <div className={styles.newCartDialog}>
         <header className={styles.newCartHeader}>
-          <h2 style={{ textAlign: `center`, fontSize: `1.8rem`, margin: `0` }}>New Cart</h2>
+          <h1 style={{ textAlign: `center`, margin: `0` }}>New Cart</h1>
         </header>
-        <form className={styles.newCartForm}></form>
+        <form className={styles.newCartForm}>
+          <ProductAutocompleteInput products={productsList} />
+        </form>
       </div>
     </ClickAwayListener>
   );

@@ -34,16 +34,17 @@
 
 .deleteButton {
   border: none;
-  background-color: rgb(255, 201, 201);
-  border-bottom: 1px solid var(--gray30);
+  background-color: rgb(255, 184, 184);
+  border-bottom: 1px solid var(--gray40);
 }
-.deleteButton:hover {
-  background-color: rgb(255, 117, 117);
+.fullSizeSelectButton:hover + .deleteButton {
+  background-color: rgb(255, 135, 135);
 }
 
-.deleteSVG {
+.deleteButton > .deleteSVG {
   filter: opacity(0);
 }
-.deleteButton:hover .deleteSVG {
+
+.fullSizeSelectButton:hover + .deleteButton > .deleteSVG {
   filter: opacity(1);
 }
