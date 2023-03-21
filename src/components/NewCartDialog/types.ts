@@ -16,4 +16,5 @@ export interface ProductAutocompleteInputProps {
   setCartsProducts: React.Dispatch<React.SetStateAction<IProduct[]>>;
   initValue: string;
   index: number;
+  isLoading: boolean;
 }

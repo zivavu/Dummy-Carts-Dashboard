@@ -18,4 +18,10 @@
 
   --heading-color: #bf5940;
   --heading-color-dark: rgb(180, 84, 60);
+
+  --pre-danger-color: #ffb8b8;
+  --danger-color: #f44336;
+
+  --pre-success-color: #6bcf6f;
+  --success-color: #55c759;
 }

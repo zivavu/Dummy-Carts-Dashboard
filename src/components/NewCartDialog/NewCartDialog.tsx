@@ -8,6 +8,7 @@ import { NewCartDialogProps } from './types';
 const NewCartDialog = ({ setShowModal, carts, setCarts }: NewCartDialogProps) => {
   const [productsList, setProductsList] = useState<IProduct[]>([]);
   const [cartProducts, setCartsProducts] = useState<IProduct[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -23,6 +24,8 @@ const NewCartDialog = ({ setShowModal, carts, setCarts }: NewCartDialogProps) =>
   }, []);
 
   const handleAddNewCart = async () => {
+    if (cartProducts.length === 0) return;
+    setIsLoading(true);
     try {
       const data = await fetch('https://dummyjson.com/carts/add', {
         method: 'POST',
@@ -35,10 +38,15 @@ const NewCartDialog = ({ setShowModal, carts, setCarts }: NewCartDialogProps) =>
         }),
       });
       const cart = await data.json();
+      if (cart.length === 0) return;
+
       const newCart = { ...cart, id: carts[carts.length - 1].id + 1 } as ICart;
-      setCarts([...carts, newCart as ICart]);
+      setCarts([...carts, newCart]);
     } catch {
       console.error(console.error);
+    } finally {
+      setIsLoading(false);
+      setShowModal(false);
     }
   };
 
@@ -46,7 +54,6 @@ const NewCartDialog = ({ setShowModal, carts, setCarts }: NewCartDialogProps) =>
     setShowModal(false);
   };
 
-  console.log(cartProducts);
   const showEmptyInputBox = cartProducts.length < 7;
   return (
     <ClickAwayListener clickAwayHandler={clickAwayHandler}>
@@ -57,16 +64,19 @@ const NewCartDialog = ({ setShowModal, carts, setCarts }: NewCartDialogProps) =>
         <form
           onSubmit={(e) => {
             e.preventDefault();
+            console.log('eee');
             handleAddNewCart();
           }}
           className={styles.newCartForm}>
           {[...cartProducts].map((el, i) => (
             <ProductAutocompleteInput
+              key={el.id}
               products={productsList}
               cartProducts={cartProducts}
               setCartsProducts={setCartsProducts}
               initValue={el.title}
               index={i}
+              isLoading={isLoading}
             />
           ))}
           {showEmptyInputBox && (
@@ -75,10 +85,13 @@ const NewCartDialog = ({ setShowModal, carts, setCarts }: NewCartDialogProps) =>
               cartProducts={cartProducts}
               setCartsProducts={setCartsProducts}
               initValue=""
-              index={cartProducts.length + 3}
+              index={cartProducts.length}
+              isLoading={isLoading}
             />
           )}
-          <button type="submit">Add New Cart</button>
+          <button className={styles.addCartButton} type="submit" disabled={isLoading}>
+            Add New Cart
+          </button>
         </form>
       </div>
     </ClickAwayListener>

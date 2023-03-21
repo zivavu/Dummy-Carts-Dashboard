@@ -26,21 +26,14 @@
   color: black;
 }
 
-.discounted {
-  text-align: center;
-  font-size: 0.75rem;
-  position: relative;
-  text-decoration: line-through solid rgba(255, 0, 0, 0.8) 2px;
-}
-
 .deleteButton {
   border: none;
-  background-color: rgb(255, 184, 184);
+  background-color: var(--pre-danger-color);
   border-bottom: 1px solid var(--gray40);
 }
 
 .deleteButton:hover {
-  background-color: rgb(255, 142, 142);
+  background-color: var(--danger-color);
 }
 
 .deleteButton > .deleteSVG {
