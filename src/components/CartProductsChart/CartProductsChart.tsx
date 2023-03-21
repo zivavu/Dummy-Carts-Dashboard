@@ -2,7 +2,7 @@ import React from 'react';
 import { CartesianGrid, Label, Scatter, ScatterChart, Tooltip, XAxis, YAxis } from 'recharts';
 import styles from './CartProductsChart.module.css';
 import ChartPlaceholder from './ChartPlaceholder';
-import CustomTickText from './CustomTickText';
+import CustomTickText from './CustomTickText/CustomTickText';
 import { CartProductsChartProps } from './types';
 
 const CartProductsChart = ({ selectedCart }: CartProductsChartProps) => {

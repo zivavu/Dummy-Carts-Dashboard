@@ -20,18 +20,20 @@
 }
 
 .firstColumn {
-  padding: 0 15px;
+  margin-left: 15px;
   text-align: left;
   width: 20px;
 }
 .secondColumn {
   text-align: center;
+  margin-left: 15px;
   width: 80px;
   color: #5b58d6;
 }
 .thirdColumn {
   text-align: center;
-  padding: 0 20px;
+  margin-left: 15px;
+  padding-right: 10px;
   width: 100px;
   color: #49b349;
 }

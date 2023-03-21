@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ICart, IProduct } from '../../types';
-import ClickAwayListener from './ClickAwayListener';
+import ClickAwayListener from './ClickAwayListener/ClickAwayListener';
 import styles from './NewCartDialog.module.css';
 import ProductAutocompleteInput from './ProductAutocompleteInput';
 import { NewCartDialogProps } from './types';

@@ -47,15 +47,11 @@
   filter: opacity(0);
 }
 
+.fullSizeSelectButton:hover + .deleteButton > .deleteSVG,
 .deleteButton:hover > .deleteSVG {
-  filter: opacity(1);
-}
-
-.fullSizeSelectButton:hover + .deleteButton > .deleteSVG {
-  filter: opacity(1);
+  filter: opacity(1) !important;
 }
 
 .deleteButton.active > .deleteSVG {
-  filter: opacity(1) !important;
-  width: 40px;
+  filter: opacity(0.6);
 }

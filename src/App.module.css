@@ -12,7 +12,8 @@ button {
 
 .aplicationWrapper {
   width: min-content;
-  height: 95vh;
+  max-width: 92vw;
+  height: min(95vh, 1000px);
   margin: auto;
   margin-top: 20px;
   background-color: white;
