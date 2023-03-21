@@ -37,7 +37,9 @@ const ListItem = ({ cart, selectedCart, setSelectedCart, carts, setCarts }: List
       </button>
       <button
         onClick={handleCartDelete}
-        className={`${listStyles.deleteButtonColumn}, ${styles.deleteButton}`}>
+        className={`${isSelected && styles.active} ${listStyles.deleteButtonColumn} ${
+          styles.deleteButton
+        }`}>
         <img
           src={TrashCanSVG}
           alt="basket"

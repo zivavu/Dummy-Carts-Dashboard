@@ -3,7 +3,7 @@
 .siteHeading {
   width: 100%;
   background-color: var(--heading-color);
-  height: 100px;
+  height: 110px;
   padding: 0 25px;
   box-sizing: border-box;
   border-bottom: 1px solid var(--gray50);

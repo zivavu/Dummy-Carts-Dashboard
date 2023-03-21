@@ -20,7 +20,8 @@
 .fullSizeSelectButton:hover {
   background-color: var(--gray10);
 }
-.active {
+
+.fullSizeSelectButton.active {
   background-color: var(--gray10);
   color: black;
 }
@@ -37,14 +38,24 @@
   background-color: rgb(255, 184, 184);
   border-bottom: 1px solid var(--gray40);
 }
-.fullSizeSelectButton:hover + .deleteButton {
-  background-color: rgb(255, 135, 135);
+
+.deleteButton:hover {
+  background-color: rgb(255, 142, 142);
 }
 
 .deleteButton > .deleteSVG {
   filter: opacity(0);
 }
 
+.deleteButton:hover > .deleteSVG {
+  filter: opacity(1);
+}
+
 .fullSizeSelectButton:hover + .deleteButton > .deleteSVG {
   filter: opacity(1);
+}
+
+.deleteButton.active > .deleteSVG {
+  filter: opacity(1) !important;
+  width: 40px;
 }
