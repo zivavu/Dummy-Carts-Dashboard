@@ -13,9 +13,9 @@
 
 .newCartDialog {
   position: fixed;
-  top: 7vh;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   width: min(90%, 400px);
   background-color: white;
   border-radius: 10px;
@@ -69,15 +69,30 @@
 .productInput {
   width: 100%;
   height: 50px;
-  border: none;
   outline: none;
   font-size: 1.2rem;
   padding: 10px;
   box-sizing: border-box;
+  border: 1px solid var(--gray40);
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  border: 1px solid var(--gray40);
   resize: none;
+}
+
+.quantityInput {
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  outline: none;
+
+  width: 30px;
+  height: 35px;
+  margin: 0;
+  margin-left: 5px;
+  border: 1px solid var(--gray60);
+  border-radius: 5px;
+  box-sizing: border-box;
+
+  text-align: center;
 }
 
 .productDeleteButton {
@@ -85,8 +100,8 @@
   border: none;
   border-radius: 5px;
   margin-left: 5px;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;

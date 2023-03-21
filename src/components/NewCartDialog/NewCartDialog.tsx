@@ -54,7 +54,7 @@ const NewCartDialog = ({ setShowModal, carts, setCarts }: NewCartDialogProps) =>
     setShowModal(false);
   };
 
-  const showEmptyInputBox = cartProducts.length < 7;
+  const showEmptyInputBox = cartProducts.length < 5;
   return (
     <ClickAwayListener clickAwayHandler={clickAwayHandler}>
       <div className={styles.newCartDialog}>

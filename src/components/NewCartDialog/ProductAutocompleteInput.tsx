@@ -11,7 +11,6 @@ const ProductAutocompleteInput = ({
   index,
   isLoading,
 }: ProductAutocompleteInputProps) => {
-  const [product, setProduct] = React.useState<IProduct | null>(null);
   const [inputValue, setInputValue] = React.useState(initValue);
   const [matches, setMatches] = React.useState<IProduct[]>([]);
 
@@ -38,16 +37,19 @@ const ProductAutocompleteInput = ({
   };
 
   const handleSetProduct = (match: IProduct) => {
-    setProduct(match);
     setMatches([]);
     setInputValue('');
-    setCartsProducts(reduceDuplicatesToSingleValue([...cartProducts, match]));
+    const newProduct = { ...match, quantity: 1 };
+    setCartsProducts(reduceDuplicatesToSingleValue([...cartProducts, newProduct]));
   };
 
   const reduceDuplicatesToSingleValue = (products: IProduct[]) => {
     const uniqueProducts: IProduct[] = [];
     products.forEach((product) => {
-      if (!uniqueProducts.some((uniqueProduct) => uniqueProduct.id === product.id)) {
+      const existingProduct = uniqueProducts.find((p) => p.id === product.id);
+      if (existingProduct) {
+        existingProduct.quantity += product.quantity;
+      } else {
         uniqueProducts.push(product);
       }
     });
@@ -56,6 +58,17 @@ const ProductAutocompleteInput = ({
 
   const handleDeleteProduct = () => {
     setCartsProducts(cartProducts.filter((product) => product.id !== cartProducts[index].id));
+  };
+
+  const handleProductsQuantityChange = (e: any) => {
+    if (e.target.value > 100) e.target.value = 99;
+    setCartsProducts(
+      cartProducts.map((product, i) =>
+        product.id === cartProducts[index].id
+          ? { ...product, quantity: Number(e.target.value) }
+          : product
+      )
+    );
   };
 
   return (
@@ -67,6 +80,16 @@ const ProductAutocompleteInput = ({
           value={inputValue}
           disabled={!!cartProducts[index] || isLoading}
           onChange={handleInputChange}></input>
+        {cartProducts[index] ? (
+          <input
+            className={styles.quantityInput}
+            type="number"
+            min={0}
+            max={100}
+            onChange={handleProductsQuantityChange}
+            value={cartProducts[index]?.quantity.toString()}
+            disabled={isLoading}></input>
+        ) : null}
         {!isLoading && cartProducts[index] ? (
           <button onClick={handleDeleteProduct} className={styles.productDeleteButton}>
             <img
