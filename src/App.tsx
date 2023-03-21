@@ -24,7 +24,7 @@ function App() {
 
   return (
     <div className={styles.aplicationWrapper}>
-      <SiteHeading setCarts={setCarts} />
+      <SiteHeading carts={carts} setCarts={setCarts} />
       <main className={styles.dashboardWrapper}>
         <CartsList
           carts={carts}

@@ -46,6 +46,7 @@ const ProductAutocompleteInput = ({
   const filterEmptyProducts = () => {
     return cartProducts.filter((product) => product?.title !== '');
   };
+
   return (
     <div className={styles.productInputContainer}>
       <label style={{ textAlign: `left`, width: `80%` }}>Product #{index + 1}</label>

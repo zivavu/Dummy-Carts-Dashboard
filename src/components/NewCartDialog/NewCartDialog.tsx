@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { IProduct } from '../../types';
+import { ICart, IProduct } from '../../types';
 import ClickAwayListener from './ClickAwayListener';
 import styles from './NewCartDialog.module.css';
 import ProductAutocompleteInput from './ProductAutocompleteInput';
 import { NewCartDialogProps } from './types';
 
-const NewCartDialog = ({ setShowModal, setCarts }: NewCartDialogProps) => {
+const NewCartDialog = ({ setShowModal, carts, setCarts }: NewCartDialogProps) => {
   const [productsList, setProductsList] = useState<IProduct[]>([]);
   const [cartProducts, setCartsProducts] = useState<IProduct[]>([]);
 
@@ -22,32 +22,25 @@ const NewCartDialog = ({ setShowModal, setCarts }: NewCartDialogProps) => {
     fetchProducts();
   }, []);
 
-  useEffect(() => {
-    const fetchCarts = async () => {
-      try {
-        fetch('https://dummyjson.com/carts/add', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            userId: 1,
-            products: [
-              {
-                id: 1,
-                quantity: 1,
-              },
-              {
-                id: 50,
-                quantity: 2,
-              },
-            ],
+  const handleAddNewCart = async () => {
+    try {
+      const data = await fetch('https://dummyjson.com/carts/add', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userId: 1,
+          products: cartProducts.map((product) => {
+            return { id: product.id, quantity: 1 };
           }),
-        }).then((res) => res.json());
-      } catch {
-        console.error(console.error);
-      }
-    };
-    fetchCarts();
-  }, []);
+        }),
+      });
+      const cart = await data.json();
+      const newCart = { ...cart, id: carts[carts.length - 1].id + 1 } as ICart;
+      setCarts([...carts, newCart as ICart]);
+    } catch {
+      console.error(console.error);
+    }
+  };
 
   const clickAwayHandler = () => {
     setShowModal(false);
@@ -61,7 +54,12 @@ const NewCartDialog = ({ setShowModal, setCarts }: NewCartDialogProps) => {
         <header className={styles.newCartHeader}>
           <h1 style={{ textAlign: `center`, margin: `0` }}>New Cart</h1>
         </header>
-        <form className={styles.newCartForm}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleAddNewCart();
+          }}
+          className={styles.newCartForm}>
           {[...cartProducts].map((el, i) => (
             <ProductAutocompleteInput
               products={productsList}
@@ -80,6 +78,7 @@ const NewCartDialog = ({ setShowModal, setCarts }: NewCartDialogProps) => {
               index={cartProducts.length + 3}
             />
           )}
+          <button type="submit">Add New Cart</button>
         </form>
       </div>
     </ClickAwayListener>
