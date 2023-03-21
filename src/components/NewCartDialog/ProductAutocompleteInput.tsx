@@ -3,9 +3,15 @@ import { IProduct } from '../../types';
 import styles from './NewCartDialog.module.css';
 import { ProductAutocompleteInputProps } from './types';
 
-const ProductAutocompleteInput = ({ products }: ProductAutocompleteInputProps) => {
+const ProductAutocompleteInput = ({
+  products,
+  cartProducts,
+  setCartsProducts,
+  initValue,
+  index,
+}: ProductAutocompleteInputProps) => {
   const [product, setProduct] = React.useState<IProduct | null>(null);
-  const [inputValue, setInputValue] = React.useState('');
+  const [inputValue, setInputValue] = React.useState(initValue);
   const [matches, setMatches] = React.useState<IProduct[]>([]);
 
   const handleChange = (e: any) => {
@@ -32,17 +38,20 @@ const ProductAutocompleteInput = ({ products }: ProductAutocompleteInputProps) =
 
   const handleSetProduct = (match: IProduct) => {
     setProduct(match);
-    setInputValue(match.title);
     setMatches([]);
+    setInputValue('');
+    setCartsProducts([...filterEmptyProducts(), match]);
   };
-  console.log(product);
 
+  const filterEmptyProducts = () => {
+    return cartProducts.filter((product) => product?.title !== '');
+  };
   return (
-    <div style={{ position: `relative` }}>
-      <label style={{ textAlign: `left`, width: `80%` }}>product#1</label>
+    <div className={styles.productInputContainer}>
+      <label style={{ textAlign: `left`, width: `80%` }}>Product #{index + 1}</label>
       <input className={styles.productInput} value={inputValue} onChange={handleChange}></input>
       <div className={styles.autocompleteDisplay}>
-        {matches.map((match) => (
+        {matches.slice(0, 5).map((match) => (
           <div
             key={match.id}
             className={styles.autocompleteOption}

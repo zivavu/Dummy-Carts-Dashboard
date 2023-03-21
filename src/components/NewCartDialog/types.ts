@@ -11,4 +11,8 @@ export interface ClickAwayListenerProps {
 
 export interface ProductAutocompleteInputProps {
   products: IProduct[];
+  cartProducts: IProduct[];
+  setCartsProducts: React.Dispatch<React.SetStateAction<IProduct[]>>;
+  initValue: string;
+  index: number;
 }
