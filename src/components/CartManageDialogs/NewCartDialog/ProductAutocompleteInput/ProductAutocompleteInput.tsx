@@ -1,6 +1,6 @@
 import React from 'react';
-import TrashCanSVG from '../../../assets/trash-can.svg';
-import { IProduct } from '../../../types';
+import TrashCanSVG from '../../../../assets/trash-can.svg';
+import { IProduct } from '../../../../types';
 import { ProductAutocompleteInputProps } from '../types';
 import styles from './ProductAutocompleteInput.module.css';
 

@@ -16,6 +16,7 @@ const SortArrows = ({ field, sortBy, setSortBy }: SortArrowsProps) => {
     if (active) setSortBy({ field, dir: swapDir(sortBy.dir) });
     else setSortBy({ field, dir: 'asc' });
   };
+
   return (
     <button
       className={`${styles.sortArrows} ${active && styles.active}`}

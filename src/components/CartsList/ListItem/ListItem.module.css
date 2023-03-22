@@ -26,28 +26,47 @@
   color: black;
 }
 
-.deleteButton {
+.editButton {
   border: none;
   background-color: white;
   border-bottom: 1px solid var(--gray30);
 }
 
+.editButton > .editSVG,
 .deleteButton > .deleteSVG {
   filter: opacity(0);
 }
-
-.fullSizeSelectButton:hover + .deleteButton > .deleteSVG,
-.deleteButton:hover > .deleteSVG,
-.deleteButton.active > .deleteSVG {
-  filter: opacity(1);
+.editButton.active,
+.fullSizeSelectButton:hover ~ .editButton {
+  background-color: var(--pre-edit-color);
+}
+.editButton:hover {
+  background-color: var(--edit-color);
 }
 
+.deleteButton {
+  border: none;
+  background-color: white;
+  border-bottom: 1px solid var(--gray30);
+}
 .deleteButton.active,
-.fullSizeSelectButton:hover + .deleteButton {
+.fullSizeSelectButton:hover ~ .deleteButton {
   background-color: var(--pre-danger-color);
 }
 .deleteButton:hover {
   background-color: var(--danger-color);
+}
+
+.fullSizeSelectButton:hover ~ .editButton > .editSVG,
+.fullSizeSelectButton:hover ~ .deleteButton > .deleteSVG,
+.editButton.active > .editSVG,
+.deleteButton.active > .deleteSVG {
+  filter: opacity(0.7);
+}
+
+.deleteButton:hover > .deleteSVG,
+.editButton:hover > .editSVG {
+  filter: opacity(1);
 }
 
 .deleteButton:disabled {

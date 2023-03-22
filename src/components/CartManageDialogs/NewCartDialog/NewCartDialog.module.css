@@ -1,4 +1,4 @@
-@import '../../colors.module.css';
+@import '../../../colors.module.css';
 
 .clickAwayListener {
   position: fixed;
@@ -9,11 +9,9 @@
   right: 0;
   bottom: 0;
   left: 0;
-
-  animation: fade-in 0.1s ease-out;
 }
 
-.newCartDialog {
+.dialog {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -38,7 +36,7 @@
   }
 }
 
-.newCartHeader {
+.header {
   padding: 25px 0;
   background-color: var(--heading-color);
   color: white;

@@ -26,13 +26,9 @@ const CartsList = ({ carts, setCarts, selectedCart, setSelectedCart }: CartsList
     sortValues();
   }, [sortBy]);
 
-  const swapDir = (dir: 'asc' | 'desc') => {
-    return dir === 'asc' ? 'desc' : 'asc';
-  };
-
   const handleSortChange = (field: 'id' | 'total' | 'discountedTotal') => {
     const active = field === sortBy.field;
-    if (active) setSortBy({ field, dir: swapDir(sortBy.dir) });
+    if (active) setSortBy({ field, dir: sortBy.dir === 'asc' ? 'desc' : 'asc' });
     else setSortBy({ field, dir: 'asc' });
   };
 

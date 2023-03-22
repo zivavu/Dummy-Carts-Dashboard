@@ -5,6 +5,8 @@ import listStyles from '../CartsList.module.css';
 import styles from './ListItem.module.css';
 import { ListItemProps } from './types';
 
+import EditSVG from '../../../assets/edit.svg';
+
 const ListItem = ({ cart, selectedCart, setSelectedCart, carts, setCarts }: ListItemProps) => {
   const [isDeleting, setIsDeleting] = React.useState(false);
 
@@ -33,6 +35,8 @@ const ListItem = ({ cart, selectedCart, setSelectedCart, carts, setCarts }: List
     }
   };
 
+  const openCartEditDialog = () => {};
+
   const isSelected = selectedCart === cart;
   return (
     <div className={styles.item} id={`cart-${cart.id}`}>
@@ -44,6 +48,18 @@ const ListItem = ({ cart, selectedCart, setSelectedCart, carts, setCarts }: List
         <span className={`${listStyles.thirdColumn} ${listStyles.coulmn}`}>
           {cart.discountedTotal}$
         </span>
+      </button>
+      <button
+        onClick={openCartEditDialog}
+        className={`${isSelected && styles.active} ${listStyles.editButtonColumn} ${
+          styles.editButton
+        }`}
+        disabled={isDeleting}>
+        <img
+          src={EditSVG}
+          alt="Trash can"
+          className={styles.editSVG}
+          style={{ width: `24px` }}></img>
       </button>
       <button
         onClick={handleCartDelete}

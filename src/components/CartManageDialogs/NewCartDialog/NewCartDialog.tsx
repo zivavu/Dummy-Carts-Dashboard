@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { ICart, IProduct } from '../../types';
-import XMarkSVG from './../../assets/x-mark.svg';
+import { ICart, IProduct } from '../../../types';
+import XMarkSVG from './../../../assets/x-mark.svg';
 import ClickAwayListener from './ClickAwayListener/ClickAwayListener';
 import styles from './NewCartDialog.module.css';
 import ProductAutocompleteInput from './ProductAutocompleteInput/ProductAutocompleteInput';
@@ -59,8 +59,8 @@ const NewCartDialog = ({ setShowModal, carts, setCarts, setSelectedCart }: NewCa
   const showEmptyInputBox = cartProducts.length < 5;
   return (
     <ClickAwayListener clickAwayHandler={clickAwayHandler}>
-      <div className={styles.newCartDialog}>
-        <header className={styles.newCartHeader}>
+      <div className={styles.dialog}>
+        <header className={styles.header}>
           <button className={styles.closeButton} onClick={() => setShowModal(false)}>
             <img
               src={XMarkSVG}

@@ -33,10 +33,11 @@
 button.coulmn {
   border: none;
   font-size: 15px;
+  background-color: transparent;
 }
 
 .firstColumn {
-  width: 23px;
+  width: 28px;
 }
 .secondColumn {
   width: 82px;
@@ -47,6 +48,13 @@ button.coulmn {
   color: var(--discounted-price-color);
 }
 
+.editButtonColumn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+}
+
 .deleteButtonColumn {
   display: flex;
   align-items: center;
@@ -55,10 +63,11 @@ button.coulmn {
 }
 
 .sortArrows {
-  width: 30px;
+  width: 26px;
   position: absolute;
-  right: -23px;
-  top: 0;
+  right: -15px;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
   justify-content: center;

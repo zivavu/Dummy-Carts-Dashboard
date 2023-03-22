@@ -13,9 +13,9 @@ button {
 .aplicationWrapper {
   width: min-content;
   max-width: 92vw;
-  height: min(95vh, 1000px);
+  height: 96vh;
   margin: auto;
-  margin-top: 20px;
+  margin-top: 2vh;
 
   display: flex;
   flex-direction: column;

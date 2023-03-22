@@ -19,12 +19,15 @@
   --heading-color: hsl(231, 50%, 55%);
   --heading-color-dark: hsl(236, 50%, 50%);
 
-  --pre-danger-color: #ffe5db;
-  --danger-color: #ec9e98;
+  --pre-danger-color: hsl(17, 100%, 93%);
+  --danger-color: hsl(4, 69%, 76%);
 
-  --pre-success-color: #54af57;
-  --success-color: #3a993e;
+  --pre-success-color: hsl(122, 36%, 51%);
+  --success-color: hsl(123, 45%, 41%);
 
-  --price-color: #5b58d6;
-  --discounted-price-color: #49b349;
+  --pre-edit-color: hsl(203, 100%, 93%);
+  --edit-color: hsl(203, 100%, 77%);
+
+  --price-color: hsl(241, 61%, 59%);
+  --discounted-price-color: hsl(120, 42%, 49%);
 }
