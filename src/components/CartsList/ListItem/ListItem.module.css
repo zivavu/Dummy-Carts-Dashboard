@@ -28,12 +28,8 @@
 
 .deleteButton {
   border: none;
-  background-color: var(--pre-danger-color);
-  border-bottom: 1px solid var(--gray40);
-}
-
-.deleteButton:hover {
-  background-color: var(--danger-color);
+  background-color: white;
+  border-bottom: 1px solid var(--gray30);
 }
 
 .deleteButton > .deleteSVG {
@@ -41,10 +37,15 @@
 }
 
 .fullSizeSelectButton:hover + .deleteButton > .deleteSVG,
-.deleteButton:hover > .deleteSVG {
-  filter: opacity(1) !important;
+.deleteButton:hover > .deleteSVG,
+.deleteButton.active > .deleteSVG {
+  filter: opacity(1);
 }
 
-.deleteButton.active > .deleteSVG {
-  filter: opacity(0.6);
+.deleteButton.active,
+.fullSizeSelectButton:hover + .deleteButton {
+  background-color: var(--pre-danger-color);
+}
+.deleteButton:hover {
+  background-color: var(--danger-color);
 }

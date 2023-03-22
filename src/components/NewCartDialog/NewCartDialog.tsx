@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ICart, IProduct } from '../../types';
 import ClickAwayListener from './ClickAwayListener/ClickAwayListener';
 import styles from './NewCartDialog.module.css';
-import ProductAutocompleteInput from './ProductAutocompleteInput';
+import ProductAutocompleteInput from './ProductAutocompleteInput/ProductAutocompleteInput';
 import { NewCartDialogProps } from './types';
 
 const NewCartDialog = ({ setShowModal, carts, setCarts }: NewCartDialogProps) => {
@@ -64,7 +64,6 @@ const NewCartDialog = ({ setShowModal, carts, setCarts }: NewCartDialogProps) =>
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            console.log('eee');
             handleAddNewCart();
           }}
           className={styles.newCartForm}>

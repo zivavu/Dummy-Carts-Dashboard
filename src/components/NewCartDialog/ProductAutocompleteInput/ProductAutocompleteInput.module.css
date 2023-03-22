@@ -1,0 +1,78 @@
+.productInputContainer {
+  position: relative;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.productInput {
+  width: 100%;
+  height: 50px;
+  outline: none;
+  font-size: 1.2rem;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid var(--gray40);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  resize: none;
+}
+
+.quantityInput {
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  outline: none;
+
+  width: 30px;
+  height: 35px;
+  margin: 0;
+  margin: 0 12px;
+  border: 1px solid var(--gray40);
+  border-radius: 5px;
+  box-sizing: border-box;
+
+  text-align: center;
+}
+
+.productDeleteButton {
+  background-color: var(--pre-danger-color);
+  border: none;
+  border-radius: 5px;
+  width: 40px;
+  height: 35px;
+  border: 1px solid var(--gray40);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.productDeleteButton:hover {
+  background-color: var(--danger-color);
+}
+
+.autocompleteDisplay {
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  border: 1px solid var(--gray40);
+  border-top: none;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  box-sizing: border-box;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.autocompleteOption {
+  padding: 10px;
+  border-bottom: 1px solid var(--gray40);
+  color: var(--gray70);
+  cursor: pointer;
+}
+
+.autocompleteOption:hover {
+  background-color: var(--gray30);
+}
+
+.productInput:disabled {
+  border-color: var(--success-color);
+  border-radius: 5px;
+}

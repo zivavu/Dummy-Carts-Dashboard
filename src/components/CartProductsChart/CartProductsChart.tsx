@@ -1,14 +1,14 @@
 import React from 'react';
 import { CartesianGrid, Label, Scatter, ScatterChart, Tooltip, XAxis, YAxis } from 'recharts';
 import styles from './CartProductsChart.module.css';
-import ChartPlaceholder from './ChartPlaceholder';
+import ChartPlaceholder from './ChartPlaceholder/ChartPlaceholder';
 import CustomTickText from './CustomTickText/CustomTickText';
 import { CartProductsChartProps } from './types';
 
 const CartProductsChart = ({ selectedCart }: CartProductsChartProps) => {
   const data = selectedCart?.products.map((product) => {
-    const { title, price, discountedPrice } = product;
-    return { title, price, discountedPrice };
+    const { title, price, discountedPrice, quantity } = product;
+    return { title, price, discountedPrice, quantity };
   });
   return (
     <div className={styles.chartWrapper}>

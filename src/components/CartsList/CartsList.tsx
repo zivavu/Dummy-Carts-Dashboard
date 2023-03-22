@@ -12,7 +12,6 @@ const CartsList = ({ carts, setCarts, selectedCart, setSelectedCart }: CartsList
         <span className={styles.firstColumn}>ID</span>
         <span className={styles.secondColumn}>Total Price</span>
         <span className={styles.thirdColumn}>Discounted To</span>
-
         <div style={{ marginLeft: `auto` }} className={styles.deleteButtonColumn}>
           <img
             src={TrashCanSVG}
@@ -21,17 +20,19 @@ const CartsList = ({ carts, setCarts, selectedCart, setSelectedCart }: CartsList
             style={{ width: `20px` }}></img>
         </div>
       </div>
-      {carts.map((cart) => {
-        return (
-          <ListItem
-            key={cart.id}
-            cart={cart}
-            carts={carts}
-            setCarts={setCarts}
-            selectedCart={selectedCart}
-            setSelectedCart={setSelectedCart}></ListItem>
-        );
-      })}
+      <div className={styles.listContent}>
+        {carts.map((cart) => {
+          return (
+            <ListItem
+              key={cart.id}
+              cart={cart}
+              carts={carts}
+              setCarts={setCarts}
+              selectedCart={selectedCart}
+              setSelectedCart={setSelectedCart}></ListItem>
+          );
+        })}
+      </div>
     </aside>
   );
 };

@@ -1,8 +1,9 @@
 import React from 'react';
-import TrashCanSVG from '../../assets/trash-can.svg';
-import { IProduct } from '../../types';
-import styles from './NewCartDialog.module.css';
-import { ProductAutocompleteInputProps } from './types';
+import TrashCanSVG from '../../../assets/trash-can.svg';
+import { IProduct } from '../../../types';
+import { ProductAutocompleteInputProps } from '../types';
+import styles from './ProductAutocompleteInput.module.css';
+
 const ProductAutocompleteInput = ({
   products,
   cartProducts,
@@ -47,7 +48,9 @@ const ProductAutocompleteInput = ({
     const uniqueProducts: IProduct[] = [];
     products.forEach((product) => {
       const existingProduct = uniqueProducts.find((p) => p.id === product.id);
+      if (existingProduct && existingProduct.quantity >= 99) return;
       if (existingProduct) {
+        console.log(existingProduct.quantity);
         existingProduct.quantity += product.quantity;
       } else {
         uniqueProducts.push(product);

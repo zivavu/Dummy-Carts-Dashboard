@@ -16,11 +16,11 @@
   --gray80: #1f2429;
   --gray90: #000000;
 
-  --heading-color: #bf5940;
-  --heading-color-dark: rgb(180, 84, 60);
+  --heading-color: hsl(231, 50%, 55%);
+  --heading-color-dark: hsl(236, 50%, 50%);
 
-  --pre-danger-color: #ffb8b8;
-  --danger-color: #f44336;
+  --pre-danger-color: #ffd6c6;
+  --danger-color: #e98a83;
 
   --pre-success-color: #6bcf6f;
   --success-color: #55c759;
