@@ -47,6 +47,29 @@
   border-top-left-radius: 10px;
 }
 
+.closeButton {
+  width: 45px;
+  height: 45px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: transparent;
+  outline: none;
+  border-radius: 10px;
+  border: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.closeButton:hover {
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+.closeSVG {
+  filter: invert(100%);
+}
+
 .newCartForm {
   padding: 30px;
   min-height: 100px;

@@ -3,6 +3,7 @@ export interface NewCartDialogProps {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   carts: ICart[];
   setCarts: React.Dispatch<React.SetStateAction<ICart[]>>;
+  setSelectedCart: React.Dispatch<React.SetStateAction<ICart | undefined>>;
 }
 
 export interface ClickAwayListenerProps {

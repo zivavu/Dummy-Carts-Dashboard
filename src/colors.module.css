@@ -19,11 +19,11 @@
   --heading-color: hsl(231, 50%, 55%);
   --heading-color-dark: hsl(236, 50%, 50%);
 
-  --pre-danger-color: #ffd6c6;
-  --danger-color: #e98a83;
+  --pre-danger-color: #ffe5db;
+  --danger-color: #ec9e98;
 
-  --pre-success-color: #6bcf6f;
-  --success-color: #55c759;
+  --pre-success-color: #54af57;
+  --success-color: #3a993e;
 
   --price-color: #5b58d6;
   --discounted-price-color: #49b349;

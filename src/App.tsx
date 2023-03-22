@@ -21,11 +21,20 @@ function App() {
     };
     fetchCarts();
   }, []);
-  console.log(selectedCart);
+
+  useEffect(() => {
+    if (!selectedCart) return;
+    //Scroll to selected cart in the list when it changes (e.g. after adding a new cart)
+    const selectedCartElement = document.getElementById(`cart-${selectedCart.id}`);
+    console.log(selectedCartElement);
+    if (selectedCartElement) {
+      selectedCartElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [selectedCart]);
 
   return (
     <div className={styles.aplicationWrapper}>
-      <SiteHeading carts={carts} setCarts={setCarts} />
+      <SiteHeading carts={carts} setCarts={setCarts} setSelectedCart={setSelectedCart} />
       <main className={styles.dashboardWrapper}>
         <CartsList
           carts={carts}

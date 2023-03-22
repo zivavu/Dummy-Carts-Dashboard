@@ -16,19 +16,27 @@ const ProductAutocompleteInput = ({
   const [matches, setMatches] = React.useState<IProduct[]>([]);
 
   const handleInputChange = (e: any) => {
-    setInputValue(e.target.value);
+    const inputValue = e.target.value;
+    setInputValue(inputValue);
+
+    if (inputValue.length === 0) {
+      setMatches([]);
+      return;
+    }
+
+    // Maches by title, sorts by title using the letters that were typed
     const newMatches = products
-      .filter((product) => product.title.toLowerCase().includes(e.target.value.toLowerCase()))
+      .filter((product) => product.title.toLowerCase().includes(inputValue.toLowerCase()))
       .sort((a, b) => {
         if (
-          a.title.toLowerCase().indexOf(e.target.value.toLowerCase()) <
-          b.title.toLowerCase().indexOf(e.target.value.toLowerCase())
+          a.title.toLowerCase().indexOf(inputValue.toLowerCase()) <
+          b.title.toLowerCase().indexOf(inputValue.toLowerCase())
         ) {
           return -1;
         }
         if (
-          a.title.toLowerCase().indexOf(e.target.value.toLowerCase()) >
-          b.title.toLowerCase().indexOf(e.target.value.toLowerCase())
+          a.title.toLowerCase().indexOf(inputValue.toLowerCase()) >
+          b.title.toLowerCase().indexOf(inputValue.toLowerCase())
         ) {
           return 1;
         }
@@ -50,7 +58,6 @@ const ProductAutocompleteInput = ({
       const existingProduct = uniqueProducts.find((p) => p.id === product.id);
       if (existingProduct && existingProduct.quantity >= 99) return;
       if (existingProduct) {
-        console.log(existingProduct.quantity);
         existingProduct.quantity += product.quantity;
       } else {
         uniqueProducts.push(product);
@@ -97,9 +104,9 @@ const ProductAutocompleteInput = ({
           <button onClick={handleDeleteProduct} className={styles.productDeleteButton}>
             <img
               src={TrashCanSVG}
-              alt="basket"
+              alt="Trash can"
               className={styles.deleteSVG}
-              style={{ width: `16px` }}></img>
+              style={{ width: `18px` }}></img>
           </button>
         ) : null}
       </div>

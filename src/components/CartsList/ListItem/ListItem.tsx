@@ -1,5 +1,4 @@
 import React from 'react';
-import BasketSVG from '../../../assets/basket.svg';
 import TrashCanSVG from '../../../assets/trash-can.svg';
 import { ICart } from '../../../types';
 import listStyles from '../CartsList.module.css';
@@ -20,14 +19,13 @@ const ListItem = ({ cart, selectedCart, setSelectedCart, carts, setCarts }: List
     setCarts(newCarts);
 
     if (selectedCart?.id === responseCart.id) {
-      console.log('dfsdfssdf');
       setSelectedCart(undefined);
     }
   };
 
   const isSelected = selectedCart === cart;
   return (
-    <div className={styles.item}>
+    <div className={styles.item} id={`cart-${cart.id}`}>
       <button
         className={`${isSelected && styles.active} ${styles.fullSizeSelectButton}`}
         onClick={handleCartSelect}>
@@ -42,9 +40,9 @@ const ListItem = ({ cart, selectedCart, setSelectedCart, carts, setCarts }: List
         }`}>
         <img
           src={TrashCanSVG}
-          alt="basket"
+          alt="Trash can"
           className={styles.deleteSVG}
-          style={{ width: `18px` }}></img>
+          style={{ width: `19px` }}></img>
       </button>
     </div>
   );

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { ICart, IProduct } from '../../types';
+import XMarkSVG from './../../assets/x-mark.svg';
 import ClickAwayListener from './ClickAwayListener/ClickAwayListener';
 import styles from './NewCartDialog.module.css';
 import ProductAutocompleteInput from './ProductAutocompleteInput/ProductAutocompleteInput';
 import { NewCartDialogProps } from './types';
 
-const NewCartDialog = ({ setShowModal, carts, setCarts }: NewCartDialogProps) => {
+const NewCartDialog = ({ setShowModal, carts, setCarts, setSelectedCart }: NewCartDialogProps) => {
   const [productsList, setProductsList] = useState<IProduct[]>([]);
   const [cartProducts, setCartsProducts] = useState<IProduct[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -42,6 +43,7 @@ const NewCartDialog = ({ setShowModal, carts, setCarts }: NewCartDialogProps) =>
 
       const newCart = { ...cart, id: carts[carts.length - 1].id + 1 } as ICart;
       setCarts((prevCarts) => [...prevCarts, newCart]);
+      setSelectedCart(newCart);
     } catch {
       console.error(console.error);
     } finally {
@@ -59,6 +61,13 @@ const NewCartDialog = ({ setShowModal, carts, setCarts }: NewCartDialogProps) =>
     <ClickAwayListener clickAwayHandler={clickAwayHandler}>
       <div className={styles.newCartDialog}>
         <header className={styles.newCartHeader}>
+          <button className={styles.closeButton} onClick={() => setShowModal(false)}>
+            <img
+              src={XMarkSVG}
+              alt="Close"
+              className={styles.closeSVG}
+              style={{ width: `80%` }}></img>
+          </button>
           <h1 style={{ textAlign: `center`, margin: `0` }}>New Cart</h1>
         </header>
         <form
@@ -88,7 +97,10 @@ const NewCartDialog = ({ setShowModal, carts, setCarts }: NewCartDialogProps) =>
               isLoading={isLoading}
             />
           )}
-          <button className={styles.addCartButton} type="submit" disabled={isLoading}>
+          <button
+            className={styles.addCartButton}
+            type="submit"
+            disabled={isLoading || !cartProducts[0]}>
             Add New Cart
           </button>
         </form>

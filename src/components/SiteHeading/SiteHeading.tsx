@@ -4,7 +4,7 @@ import NewCartDialog from '../NewCartDialog/NewCartDialog';
 import styles from './SiteHeading.module.css';
 import { SiteHeadingProps } from './types';
 
-const SiteHeading = ({ carts, setCarts }: SiteHeadingProps) => {
+const SiteHeading = ({ carts, setCarts, setSelectedCart }: SiteHeadingProps) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -35,7 +35,12 @@ const SiteHeading = ({ carts, setCarts }: SiteHeadingProps) => {
       </button>
       {showModal &&
         createPortal(
-          <NewCartDialog carts={carts} setShowModal={setShowModal} setCarts={setCarts} />,
+          <NewCartDialog
+            carts={carts}
+            setShowModal={setShowModal}
+            setCarts={setCarts}
+            setSelectedCart={setSelectedCart}
+          />,
           document.body
         )}
     </header>
