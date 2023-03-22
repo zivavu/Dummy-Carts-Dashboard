@@ -1,7 +1,7 @@
 import React from 'react';
 import { CartesianGrid, Label, Scatter, ScatterChart, Tooltip, XAxis, YAxis } from 'recharts';
 import styles from './CartProductsChart.module.css';
-import ChartPlaceholder from './ChartPlaceholders/EmptyChartPlaceholder';
+import EmptyChartPlaceholder from './ChartPlaceholders/EmptyChartPlaceholder';
 import SingleItemChartPlaceholder from './ChartPlaceholders/SingleItemChartPlaceholder';
 import CustomTickText from './CustomTickText/CustomTickText';
 import CustomTooltip from './CustomTooltip/CustomTooltip';
@@ -13,7 +13,7 @@ const CartProductsChart = ({ selectedCart }: CartProductsChartProps) => {
     return { title, price, totalPrice, discountedTotal, quantity };
   });
 
-  //if there is only one element then we don't want to show the chart
+  //If there is only one element then we don't want to show the chart, but the placeholder instead
   if (data && data?.length < 2) data = undefined;
 
   return (
@@ -46,8 +46,8 @@ const CartProductsChart = ({ selectedCart }: CartProductsChartProps) => {
           isAnimationActive={false}
         />
       </ScatterChart>
-      {selectedCart ? null : <ChartPlaceholder />}
-      {data ? null : <SingleItemChartPlaceholder />}
+      {!selectedCart ? <EmptyChartPlaceholder /> : null}
+      {selectedCart && !data ? <SingleItemChartPlaceholder /> : null}
     </div>
   );
 };

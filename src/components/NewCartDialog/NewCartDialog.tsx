@@ -41,7 +41,7 @@ const NewCartDialog = ({ setShowModal, carts, setCarts }: NewCartDialogProps) =>
       if (cart.length === 0) return;
 
       const newCart = { ...cart, id: carts[carts.length - 1].id + 1 } as ICart;
-      setCarts([...carts, newCart]);
+      setCarts((prevCarts) => [...prevCarts, newCart]);
     } catch {
       console.error(console.error);
     } finally {
