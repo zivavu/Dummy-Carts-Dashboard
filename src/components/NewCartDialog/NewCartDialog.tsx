@@ -33,7 +33,7 @@ const NewCartDialog = ({ setShowModal, carts, setCarts }: NewCartDialogProps) =>
         body: JSON.stringify({
           userId: 1,
           products: cartProducts.map((product) => {
-            return { id: product.id, quantity: 1 };
+            return { id: product.id, quantity: product.quantity };
           }),
         }),
       });

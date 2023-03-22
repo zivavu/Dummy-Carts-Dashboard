@@ -1,3 +1,5 @@
+@import './../../colors.module.css';
+
 .chartWrapper {
   position: relative;
   height: 100%;
@@ -10,4 +12,27 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+}
+.customTooltip {
+  padding: 13px 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid var(--gray40);
+  box-shadow: 0 0 2px 1px var(--gray40);
+  border-radius: 7px;
+}
+.title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0;
+  padding: 3px 0;
+}
+
+.price {
+  color: var(--price-color);
+}
+.discountedPrice {
+  color: var(--discounted-price-color);
 }

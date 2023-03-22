@@ -34,14 +34,14 @@
   text-align: center;
   margin-left: 15px;
   width: 80px;
-  color: #5b58d6;
+  color: var(--price-color);
 }
 .thirdColumn {
   text-align: center;
   margin-left: 15px;
   padding-right: 10px;
   width: 100px;
-  color: #49b349;
+  color: var(--discounted-price-color);
 }
 
 .deleteButtonColumn {

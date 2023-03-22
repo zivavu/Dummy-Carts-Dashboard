@@ -21,6 +21,7 @@ function App() {
     };
     fetchCarts();
   }, []);
+  console.log(selectedCart);
 
   return (
     <div className={styles.aplicationWrapper}>

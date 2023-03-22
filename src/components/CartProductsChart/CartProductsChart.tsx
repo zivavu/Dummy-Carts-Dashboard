@@ -3,12 +3,13 @@ import { CartesianGrid, Label, Scatter, ScatterChart, Tooltip, XAxis, YAxis } fr
 import styles from './CartProductsChart.module.css';
 import ChartPlaceholder from './ChartPlaceholder/ChartPlaceholder';
 import CustomTickText from './CustomTickText/CustomTickText';
+import CustomTooltip from './CustomTooltip/CustomTooltip';
 import { CartProductsChartProps } from './types';
 
 const CartProductsChart = ({ selectedCart }: CartProductsChartProps) => {
   const data = selectedCart?.products.map((product) => {
-    const { title, price, discountedPrice, quantity } = product;
-    return { title, price, discountedPrice, quantity };
+    const { title, price, total: totalPrice, discountedPrice: discountedTotal, quantity } = product;
+    return { title, price, totalPrice, discountedTotal, quantity };
   });
   return (
     <div className={styles.chartWrapper}>
@@ -22,10 +23,10 @@ const CartProductsChart = ({ selectedCart }: CartProductsChartProps) => {
         <YAxis>
           <Label value="Price" position="insideTop" offset={-25}></Label>
         </YAxis>
-        <Tooltip labelFormatter={() => ''} itemStyle={{ textTransform: 'capitalize' }} />
+        <Tooltip content={<CustomTooltip />} />
         <Scatter
           type="monotone"
-          dataKey="price"
+          dataKey="totalPrice"
           name="Price"
           line
           fill="#5b58d6"
@@ -33,7 +34,7 @@ const CartProductsChart = ({ selectedCart }: CartProductsChartProps) => {
         />
         <Scatter
           type="monotone"
-          dataKey="discountedPrice"
+          dataKey="discountedTotal"
           name="Discounted price"
           line
           fill="#49b349"
