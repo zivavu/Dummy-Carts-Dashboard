@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from './../CartProductsChart.module.css';
 
-function ChartPlaceholder() {
+function SingleItemChartPlaceholder() {
   return (
     <span className={styles.chartPlaceholder}>
-      Choose a cart from the list to see its content :&#41;
+      You need at least two items in your cart to see the chart ;&#41;
     </span>
   );
 }
 
-export default ChartPlaceholder;
+export default SingleItemChartPlaceholder;

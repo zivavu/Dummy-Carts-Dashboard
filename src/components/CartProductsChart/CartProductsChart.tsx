@@ -1,16 +1,21 @@
 import React from 'react';
 import { CartesianGrid, Label, Scatter, ScatterChart, Tooltip, XAxis, YAxis } from 'recharts';
 import styles from './CartProductsChart.module.css';
-import ChartPlaceholder from './ChartPlaceholder/ChartPlaceholder';
+import ChartPlaceholder from './ChartPlaceholders/EmptyChartPlaceholder';
+import SingleItemChartPlaceholder from './ChartPlaceholders/SingleItemChartPlaceholder';
 import CustomTickText from './CustomTickText/CustomTickText';
 import CustomTooltip from './CustomTooltip/CustomTooltip';
 import { CartProductsChartProps } from './types';
 
 const CartProductsChart = ({ selectedCart }: CartProductsChartProps) => {
-  const data = selectedCart?.products.map((product) => {
+  let data = selectedCart?.products.map((product) => {
     const { title, price, total: totalPrice, discountedPrice: discountedTotal, quantity } = product;
     return { title, price, totalPrice, discountedTotal, quantity };
   });
+
+  //if there is only one element then we don't want to show the chart
+  if (data && data?.length < 2) data = undefined;
+
   return (
     <div className={styles.chartWrapper}>
       <ScatterChart
@@ -41,7 +46,8 @@ const CartProductsChart = ({ selectedCart }: CartProductsChartProps) => {
           isAnimationActive={false}
         />
       </ScatterChart>
-      {data ? null : <ChartPlaceholder />}
+      {selectedCart ? null : <ChartPlaceholder />}
+      {data ? null : <SingleItemChartPlaceholder />}
     </div>
   );
 };

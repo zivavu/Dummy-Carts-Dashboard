@@ -9,7 +9,7 @@ const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
   return (
     <div className={styles.customTooltip}>
       <h4 className={styles.title}>{item.title}</h4>
-      <span className={styles.quantity}>Quantity: {item.quantity}</span>
+      <span className={styles.quantity}>Quantity: {item.quantity}pcs.</span>
       <span className={styles.price}>
         {dynamicPriceString}: {item.totalPrice}$
       </span>

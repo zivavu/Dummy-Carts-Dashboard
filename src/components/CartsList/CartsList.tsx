@@ -12,13 +12,6 @@ const CartsList = ({ carts, setCarts, selectedCart, setSelectedCart }: CartsList
         <span className={styles.firstColumn}>ID</span>
         <span className={styles.secondColumn}>Total Price</span>
         <span className={styles.thirdColumn}>Discounted To</span>
-        <div style={{ marginLeft: `auto` }} className={styles.deleteButtonColumn}>
-          <img
-            src={TrashCanSVG}
-            alt="basket"
-            className={styles.deleteSVG}
-            style={{ width: `20px` }}></img>
-        </div>
       </div>
       <div className={styles.listContent}>
         {carts.map((cart) => {
