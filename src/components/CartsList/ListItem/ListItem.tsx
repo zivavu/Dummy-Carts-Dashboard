@@ -29,9 +29,11 @@ const ListItem = ({ cart, selectedCart, setSelectedCart, carts, setCarts }: List
       <button
         className={`${isSelected && styles.active} ${styles.fullSizeSelectButton}`}
         onClick={handleCartSelect}>
-        <span className={listStyles.firstColumn}>#{cart.id}</span>
-        <span className={listStyles.secondColumn}> {cart.total}$</span>
-        <span className={listStyles.thirdColumn}>{cart.discountedTotal}$</span>
+        <span className={`${listStyles.firstColumn} ${listStyles.coulmn}`}>#{cart.id}</span>
+        <span className={`${listStyles.secondColumn} ${listStyles.coulmn}`}> {cart.total}$</span>
+        <span className={`${listStyles.thirdColumn} ${listStyles.coulmn}`}>
+          {cart.discountedTotal}$
+        </span>
       </button>
       <button
         onClick={handleCartDelete}

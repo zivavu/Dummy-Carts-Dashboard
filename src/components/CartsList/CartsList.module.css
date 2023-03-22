@@ -25,21 +25,22 @@
   padding: 5px 0;
 }
 
+.coulmn {
+  position: relative;
+  margin-left: 25px;
+  text-align: center;
+}
+
 .firstColumn {
-  margin-left: 15px;
   text-align: left;
   width: 20px;
 }
 .secondColumn {
-  text-align: center;
-  margin-left: 15px;
-  width: 80px;
+  width: 82px;
   color: var(--price-color);
 }
 .thirdColumn {
-  text-align: center;
-  margin-left: 15px;
-  width: 100px;
+  width: 105px;
   color: var(--discounted-price-color);
 }
 
@@ -48,4 +49,27 @@
   align-items: center;
   justify-content: center;
   width: 35px;
+}
+
+.sortArrows {
+  width: 30px;
+  position: absolute;
+  right: -23px;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  filter: opacity(0.1);
+}
+
+.sortArrows:hover {
+  filter: opacity(0.5);
+}
+
+.sortArrows.active {
+  filter: opacity(1);
 }
