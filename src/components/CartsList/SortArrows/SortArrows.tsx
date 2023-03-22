@@ -13,14 +13,15 @@ const SortArrows = ({ field, sortBy, setSortBy }: SortArrowsProps) => {
   };
 
   const handleSortChange = () => {
-    setSortBy({ field, dir: swapDir(sortBy.dir) });
+    if (active) setSortBy({ field, dir: swapDir(sortBy.dir) });
+    else setSortBy({ field, dir: 'asc' });
   };
   return (
     <button
       className={`${styles.sortArrows} ${active && styles.active}`}
       onClick={handleSortChange}>
       <img
-        src={sortBy.dir === 'asc' ? SortAsc : SortDesc}
+        src={active && sortBy.dir === 'desc' ? SortDesc : SortAsc}
         alt="Trash can"
         className={styles.deleteSVG}
         style={{ width: `100%` }}></img>

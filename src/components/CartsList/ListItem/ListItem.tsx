@@ -6,20 +6,30 @@ import styles from './ListItem.module.css';
 import { ListItemProps } from './types';
 
 const ListItem = ({ cart, selectedCart, setSelectedCart, carts, setCarts }: ListItemProps) => {
+  const [isDeleting, setIsDeleting] = React.useState(false);
+
   const handleCartSelect = () => {
     setSelectedCart(cart);
   };
 
   const handleCartDelete = async () => {
-    const data = await fetch(`https://dummyjson.com/carts/${cart.id}`, {
-      method: 'DELETE',
-    });
-    const responseCart = await data.json();
-    const newCarts = carts.filter((oldCart) => oldCart.id !== responseCart.id) as ICart[];
-    setCarts(newCarts);
+    if (carts.length < 2) return;
+    setIsDeleting(true);
+    try {
+      const data = await fetch(`https://dummyjson.com/carts/${cart.id}`, {
+        method: 'DELETE',
+      });
+      const responseCart = await data.json();
+      const newCarts = carts.filter((oldCart) => oldCart.id !== responseCart.id) as ICart[];
+      setCarts(newCarts);
 
-    if (selectedCart?.id === responseCart.id) {
-      setSelectedCart(undefined);
+      if (selectedCart?.id === responseCart.id) {
+        setSelectedCart(undefined);
+      }
+    } catch {
+      console.error(console.error);
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -39,7 +49,8 @@ const ListItem = ({ cart, selectedCart, setSelectedCart, carts, setCarts }: List
         onClick={handleCartDelete}
         className={`${isSelected && styles.active} ${listStyles.deleteButtonColumn} ${
           styles.deleteButton
-        }`}>
+        }`}
+        disabled={isDeleting}>
         <img
           src={TrashCanSVG}
           alt="Trash can"
