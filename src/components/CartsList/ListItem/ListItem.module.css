@@ -70,7 +70,8 @@
 }
 
 .deleteButton:disabled {
-  animation: 0.7s delete ease-in;
+  animation: 1s delete ease-out;
+  background-color: var(--danger-color);
 }
 
 .deleteButton:disabled > .deleteSVG {
@@ -80,10 +81,8 @@
 @keyframes delete {
   0% {
     box-shadow: none;
-    background-color: var(--danger-color);
   }
   100% {
-    box-shadow: inset 0 0 10px 5px var(--danger-color), inset 0 0 5px 5px var(--gray80);
-    background-color: var(--heading-color);
+    box-shadow: inset 0 0 10px 5px var(--danger-color), inset 0 0 7px 3px var(--gray70);
   }
 }

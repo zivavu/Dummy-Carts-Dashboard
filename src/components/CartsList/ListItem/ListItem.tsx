@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import TrashCanSVG from '../../../assets/trash-can.svg';
 import { ICart } from '../../../types';
 import listStyles from '../CartsList.module.css';
 import styles from './ListItem.module.css';
 import { ListItemProps } from './types';
 
+import { CartsContext } from '../../../App';
 import EditSVG from '../../../assets/edit.svg';
 
-const ListItem = ({ cart, selectedCart, setSelectedCart, carts, setCarts }: ListItemProps) => {
+const ListItem = ({ cart }: ListItemProps) => {
+  const { carts, setCarts, selectedCart, setSelectedCart } = useContext(CartsContext);
+
   const [isDeleting, setIsDeleting] = React.useState(false);
 
   const handleCartSelect = () => {

@@ -17,3 +17,10 @@ export interface IProduct {
   quantity: number;
   total: number;
 }
+
+export interface ICartsContext {
+  carts: ICart[];
+  setCarts: React.Dispatch<React.SetStateAction<ICart[]>>;
+  selectedCart: ICart | undefined;
+  setSelectedCart: React.Dispatch<React.SetStateAction<ICart | undefined>>;
+}

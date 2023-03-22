@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { CartsContext } from '../../../App';
 import { ICart, IProduct } from '../../../types';
 import XMarkSVG from './../../../assets/x-mark.svg';
 import ClickAwayListener from './ClickAwayListener/ClickAwayListener';
@@ -6,7 +7,9 @@ import styles from './NewCartDialog.module.css';
 import ProductAutocompleteInput from './ProductAutocompleteInput/ProductAutocompleteInput';
 import { NewCartDialogProps } from './types';
 
-const NewCartDialog = ({ setShowModal, carts, setCarts, setSelectedCart }: NewCartDialogProps) => {
+const NewCartDialog = ({ setShowModal }: NewCartDialogProps) => {
+  const { carts, setCarts, setSelectedCart } = useContext(CartsContext);
+
   const [productsList, setProductsList] = useState<IProduct[]>([]);
   const [cartProducts, setCartsProducts] = useState<IProduct[]>([]);
   const [isLoading, setIsLoading] = useState(false);

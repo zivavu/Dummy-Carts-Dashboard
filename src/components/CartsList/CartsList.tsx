@@ -1,30 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import TrashCanSVG from '../../assets/trash-can.svg';
 import styles from './CartsList.module.css';
 import ListItem from './ListItem/ListItem';
 import { CartsListProps, ISortBy } from './types';
 
-import { ICart } from '../../types';
+import { CartsContext } from '../../App';
 import SortArrows from './SortArrows/SortArrows';
 
-const CartsList = ({ carts, setCarts, selectedCart, setSelectedCart }: CartsListProps) => {
+const CartsList = ({}: CartsListProps) => {
+  const { carts } = useContext(CartsContext);
+
   const [sortBy, setSortBy] = React.useState<ISortBy>({ field: 'id', dir: 'desc' });
 
-  function sortValues() {
-    return setCarts((prev) =>
-      prev.sort((a, b) => {
-        if (sortBy.dir === 'asc') {
-          return a[sortBy.field] > b[sortBy.field] ? -1 : 1;
-        } else {
-          return a[sortBy.field] < b[sortBy.field] ? -1 : 1;
-        }
-      })
-    );
+  function cartsSorted() {
+    return carts.sort((a, b) => {
+      if (sortBy.dir === 'asc') {
+        return a[sortBy.field] > b[sortBy.field] ? -1 : 1;
+      } else {
+        return a[sortBy.field] < b[sortBy.field] ? -1 : 1;
+      }
+    });
   }
-
-  useEffect(() => {
-    sortValues();
-  }, [sortBy]);
 
   const handleSortChange = (field: 'id' | 'total' | 'discountedTotal') => {
     const active = field === sortBy.field;
@@ -56,16 +52,8 @@ const CartsList = ({ carts, setCarts, selectedCart, setSelectedCart }: CartsList
         </button>
       </div>
       <div className={styles.listContent}>
-        {carts.map((cart) => {
-          return (
-            <ListItem
-              key={cart.id}
-              cart={cart}
-              carts={carts}
-              setCarts={setCarts}
-              selectedCart={selectedCart}
-              setSelectedCart={setSelectedCart}></ListItem>
-          );
+        {cartsSorted().map((cart) => {
+          return <ListItem key={cart.id} cart={cart}></ListItem>;
         })}
       </div>
     </aside>

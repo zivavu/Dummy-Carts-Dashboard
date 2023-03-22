@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import styles from './App.module.css';
 import CartProductsChart from './components/CartProductsChart/CartProductsChart';
 import CartsList from './components/CartsList/CartsList';
 import SiteHeading from './components/SiteHeading/SiteHeading';
-import { ICart } from './types';
+import { ICart, ICartsContext } from './types';
+
+export const CartsContext = createContext<ICartsContext>({} as ICartsContext);
 
 function App() {
   const [carts, setCarts] = useState<ICart[]>([]);
@@ -32,18 +34,15 @@ function App() {
   }, [selectedCart]);
 
   return (
-    <div className={styles.aplicationWrapper}>
-      <SiteHeading carts={carts} setCarts={setCarts} setSelectedCart={setSelectedCart} />
-      <main className={styles.dashboardWrapper}>
-        <CartsList
-          carts={carts}
-          setCarts={setCarts}
-          selectedCart={selectedCart}
-          setSelectedCart={setSelectedCart}
-        />
-        <CartProductsChart selectedCart={selectedCart} />
-      </main>
-    </div>
+    <CartsContext.Provider value={{ carts, setCarts, selectedCart, setSelectedCart }}>
+      <div className={styles.aplicationWrapper}>
+        <SiteHeading />
+        <main className={styles.dashboardWrapper}>
+          <CartsList />
+          <CartProductsChart selectedCart={selectedCart} />
+        </main>
+      </div>
+    </CartsContext.Provider>
   );
 }
 
