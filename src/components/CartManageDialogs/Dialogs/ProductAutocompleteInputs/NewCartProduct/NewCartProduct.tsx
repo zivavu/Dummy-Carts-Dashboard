@@ -1,17 +1,19 @@
-import React from 'react';
-import TrashCanSVG from '../../../../assets/trash-can.svg';
-import { IProduct } from '../../../../types';
-import { ProductAutocompleteInputProps } from '../../types';
-import styles from './ProductAutocompleteInput.module.css';
+import React, { useContext } from 'react';
+import TrashCanSVG from '../../../../../assets/trash-can.svg';
+import { ProductsListContext } from '../../../../../contexts/ProductsListContext';
+import { IProduct } from '../../../../../types';
+import { ProductAutocompleteInputProps } from '../types';
+import styles from './../ProductAutocomplete.module.css';
 
-const ProductAutocompleteInput = ({
-  products,
+const NewCartProductAutocomplete = ({
   cartProducts,
   setCartsProducts,
   initValue,
   index,
   isLoading,
 }: ProductAutocompleteInputProps) => {
+  const { productsList } = useContext(ProductsListContext);
+
   const [inputValue, setInputValue] = React.useState(initValue);
   const [matches, setMatches] = React.useState<IProduct[]>([]);
 
@@ -25,7 +27,7 @@ const ProductAutocompleteInput = ({
     }
 
     // Maches by title, sorts by title using the letters that were typed
-    const newMatches = products
+    const newMatches = productsList
       .filter((product) => product.title.toLowerCase().includes(inputValue.toLowerCase()))
       .sort((a, b) => {
         if (
@@ -126,4 +128,4 @@ const ProductAutocompleteInput = ({
   );
 };
 
-export default ProductAutocompleteInput;
+export default NewCartProductAutocomplete;

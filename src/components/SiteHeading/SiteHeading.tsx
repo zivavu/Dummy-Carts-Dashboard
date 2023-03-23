@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
-import NewCartDialog from '../CartManageDialogs/NewCartDialog/NewCartDialog';
+import NewCartDialog from '../CartManageDialogs/Dialogs/NewCartDialog/NewCartDialog';
 import styles from './SiteHeading.module.css';
 
 const SiteHeading = () => {

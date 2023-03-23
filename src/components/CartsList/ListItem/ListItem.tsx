@@ -7,8 +7,8 @@ import { ListItemProps } from './types';
 
 import { createPortal } from 'react-dom';
 import EditSVG from '../../../assets/edit.svg';
-import EditCartDialog from '../../CartManageDialogs/EditCartDialog/EditCartDialog';
 import { CartsContext } from '../../../contexts/CartsContext';
+import EditCartDialog from '../../CartManageDialogs/Dialogs/EditCartDialog/EditCartDialog';
 
 const ListItem = ({ cart }: ListItemProps) => {
   const { carts, setCarts, selectedCart, setSelectedCart } = useContext(CartsContext);

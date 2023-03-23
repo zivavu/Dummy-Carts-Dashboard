@@ -1,16 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { CartsContext } from '../../../contexts/CartsContext';
-import { ProductsListContext } from '../../../contexts/ProductsListContext';
-import { ICart, IProduct } from '../../../types';
-import DialogBase from '../DialogBase/DialogBase';
-import dialogStyles from '../DialogBase/DialogBase.module.css';
-import { NewCartDialogProps } from '../types';
+import { CartsContext } from '../../../../contexts/CartsContext';
+import { ProductsListContext } from '../../../../contexts/ProductsListContext';
+import { ICart, IProduct } from '../../../../types';
+import DialogBase from '../../DialogBase/DialogBase';
+import dialogStyles from '../../DialogBase/DialogBase.module.css';
+import NewCartProductAutocomplete from '../ProductAutocompleteInputs/NewCartProduct/NewCartProduct';
 import styles from './NewCartDialog.module.css';
-import ProductAutocompleteInput from './ProductAutocompleteInput/ProductAutocompleteInput';
+import { NewCartDialogProps } from './types';
 
 const NewCartDialog = ({ setShowDialog }: NewCartDialogProps) => {
   const { carts, setCarts, setSelectedCart } = useContext(CartsContext);
-  const { productsList } = useContext(ProductsListContext);
 
   const [cartProducts, setCartsProducts] = useState<IProduct[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -57,9 +56,8 @@ const NewCartDialog = ({ setShowDialog }: NewCartDialogProps) => {
         }}
         className={styles.newCartForm}>
         {[...cartProducts].map((el, i) => (
-          <ProductAutocompleteInput
+          <NewCartProductAutocomplete
             key={el.id}
-            products={productsList}
             cartProducts={cartProducts}
             setCartsProducts={setCartsProducts}
             initValue={el.title}
@@ -68,8 +66,7 @@ const NewCartDialog = ({ setShowDialog }: NewCartDialogProps) => {
           />
         ))}
         {showEmptyInputBox && (
-          <ProductAutocompleteInput
-            products={productsList}
+          <NewCartProductAutocomplete
             cartProducts={cartProducts}
             setCartsProducts={setCartsProducts}
             initValue=""

@@ -72,8 +72,11 @@
   padding: 17px 25px;
   color: white;
   border-radius: 5px;
+  background-color: var(--pre-success-color);
 }
-
+.submitButton:hover {
+  background-color: var(--success-color);
+}
 .submitButton :disabled {
   background-color: var(--gray40);
   cursor: not-allowed;
