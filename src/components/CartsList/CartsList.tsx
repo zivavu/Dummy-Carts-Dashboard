@@ -4,9 +4,9 @@ import styles from './CartsList.module.css';
 import ListItem from './ListItem/ListItem';
 import { CartsListProps, ISortBy } from './types';
 
-import { CartsContext } from '../../App';
 import useScrollToSelectedCart from '../../hooks/useScrollToSelectedCart';
 import SortButton from './SortButton/SortButton';
+import { CartsContext } from '../../contexts/CartsContext';
 
 const CartsList = ({}: CartsListProps) => {
   const { carts } = useContext(CartsContext);

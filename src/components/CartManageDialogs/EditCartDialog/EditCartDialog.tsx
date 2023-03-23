@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { CartsContext } from '../../../App';
 import { ICart, IProduct } from '../../../types';
 import DialogBase from '../DialogBase/DialogBase';
 import { EditCartDialogProps, NewCartDialogProps } from '../types';
@@ -9,7 +8,6 @@ const EditCartDialog = ({ cartToEdit, setShowDialog }: EditCartDialogProps) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { discountedTotal, id, products, total, totalProducts, totalQuantity } = cartToEdit;
-  console.log(discountedTotal, id, products, total, totalProducts, totalQuantity);
 
   const clickAwayHandler = () => {
     setShowDialog(false);

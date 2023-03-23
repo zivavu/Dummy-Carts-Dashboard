@@ -1,33 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { CartsContext } from '../../../App';
+import { CartsContext } from '../../../contexts/CartsContext';
+import { ProductsListContext } from '../../../contexts/ProductsListContext';
 import { ICart, IProduct } from '../../../types';
-import ClickAwayListener from '../ClickAwayListener/ClickAwayListener';
 import DialogBase from '../DialogBase/DialogBase';
 import dialogStyles from '../DialogBase/DialogBase.module.css';
 import { NewCartDialogProps } from '../types';
-import XMarkSVG from './../../../assets/x-mark.svg';
 import styles from './NewCartDialog.module.css';
 import ProductAutocompleteInput from './ProductAutocompleteInput/ProductAutocompleteInput';
 
 const NewCartDialog = ({ setShowDialog }: NewCartDialogProps) => {
   const { carts, setCarts, setSelectedCart } = useContext(CartsContext);
+  const { productsList } = useContext(ProductsListContext);
 
-  const [productsList, setProductsList] = useState<IProduct[]>([]);
   const [cartProducts, setCartsProducts] = useState<IProduct[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const data = await fetch('https://dummyjson.com/products');
-        const json = await data.json();
-        setProductsList(json.products as IProduct[]);
-      } catch {
-        console.error(console.error);
-      }
-    };
-    fetchProducts();
-  }, []);
 
   const handleAddNewCart = async () => {
     if (cartProducts.length === 0) return;
