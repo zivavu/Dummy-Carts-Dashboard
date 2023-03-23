@@ -14,7 +14,6 @@ const ListItem = ({ cart }: ListItemProps) => {
   const { carts, setCarts, selectedCart, setSelectedCart } = useContext(CartsContext);
 
   const [isDeleting, setIsDeleting] = React.useState(false);
-
   const [showEditDialog, setShowEditDialog] = React.useState(false);
 
   const handleCartSelect = () => {
@@ -24,6 +23,15 @@ const ListItem = ({ cart }: ListItemProps) => {
   const handleCartDelete = async () => {
     if (carts.length < 2) return;
     setIsDeleting(true);
+
+    //This is a local cart and will be deleted only loccaly
+    if (cart.id > 20) {
+      const newCarts = carts.filter((oldCart) => oldCart.id !== cart.id) as ICart[];
+      setCarts(newCarts);
+      setIsDeleting(false);
+      return;
+    }
+
     try {
       const data = await fetch(`https://dummyjson.com/carts/${cart.id}`, {
         method: 'DELETE',
