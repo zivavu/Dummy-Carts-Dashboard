@@ -5,10 +5,13 @@ import ListItem from './ListItem/ListItem';
 import { CartsListProps, ISortBy } from './types';
 
 import { CartsContext } from '../../App';
+import useScrollToSelectedCart from '../../hooks/useScrollToSelectedCart';
 import SortButton from './SortButton/SortButton';
 
 const CartsList = ({}: CartsListProps) => {
   const { carts } = useContext(CartsContext);
+
+  useScrollToSelectedCart();
 
   const [sortBy, setSortBy] = React.useState<ISortBy>({ field: 'id', dir: 'desc' });
 
