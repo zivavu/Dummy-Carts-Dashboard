@@ -5,7 +5,7 @@ import ListItem from './ListItem/ListItem';
 import { CartsListProps, ISortBy } from './types';
 
 import { CartsContext } from '../../App';
-import SortArrows from './SortArrows/SortArrows';
+import SortButton from './SortButton/SortButton';
 
 const CartsList = ({}: CartsListProps) => {
   const { carts } = useContext(CartsContext);
@@ -32,24 +32,24 @@ const CartsList = ({}: CartsListProps) => {
     <aside className={styles.list}>
       <h2 className={styles.listTitle}>Your Carts</h2>
       <div className={styles.listHeader}>
-        <button
-          className={`${styles.firstColumn} ${styles.coulmn}`}
+        <div
+          className={`${styles.firstColumn} ${styles.coulmn} ${styles.clickable}`}
           onClick={() => handleSortChange('id')}>
           <span>ID</span>
-          <SortArrows field="id" sortBy={sortBy} setSortBy={setSortBy} />
-        </button>
-        <button
-          className={`${styles.secondColumn} ${styles.coulmn}`}
+          <SortButton field="id" sortBy={sortBy} setSortBy={setSortBy} />
+        </div>
+        <div
+          className={`${styles.secondColumn} ${styles.coulmn} ${styles.clickable}`}
           onClick={() => handleSortChange('total')}>
           <span>Total Price</span>
-          <SortArrows field="total" sortBy={sortBy} setSortBy={setSortBy} />
-        </button>
-        <button
-          className={`${styles.thirdColumn} ${styles.coulmn}`}
+          <SortButton field="total" sortBy={sortBy} setSortBy={setSortBy} />
+        </div>
+        <div
+          className={`${styles.thirdColumn} ${styles.coulmn} ${styles.clickable}`}
           onClick={() => handleSortChange('discountedTotal')}>
           <span>Discounted To</span>
-          <SortArrows field="discountedTotal" sortBy={sortBy} setSortBy={setSortBy} />
-        </button>
+          <SortButton field="discountedTotal" sortBy={sortBy} setSortBy={setSortBy} />
+        </div>
       </div>
       <div className={styles.listContent}>
         {cartsSorted().map((cart) => {

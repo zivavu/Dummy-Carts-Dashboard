@@ -1,7 +1,7 @@
 import { ICart } from '../../types';
 
 export interface CartsListProps {}
-export interface SortArrowsProps {
+export interface SortButtonProps {
   field: 'id' | 'total' | 'discountedTotal';
   sortBy: ISortBy;
   setSortBy: React.Dispatch<React.SetStateAction<ISortBy>>;

@@ -12,9 +12,13 @@
   padding: 10px;
   box-sizing: border-box;
   border: 1px solid var(--gray40);
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-radius: 5px;
   resize: none;
+}
+.productInput:focus,
+.productInput .autocompleteOption {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .quantityInput {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ClickAwayListenerProps } from '../types';
-import styles from './../NewCartDialog.module.css';
+import styles from './ClickAwayListener.module.css';
 const ClickAwayListener = ({ children, clickAwayHandler }: ClickAwayListenerProps) => {
   return (
     <div

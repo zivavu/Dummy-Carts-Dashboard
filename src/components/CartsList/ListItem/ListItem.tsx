@@ -5,13 +5,17 @@ import listStyles from '../CartsList.module.css';
 import styles from './ListItem.module.css';
 import { ListItemProps } from './types';
 
+import { createPortal } from 'react-dom';
 import { CartsContext } from '../../../App';
 import EditSVG from '../../../assets/edit.svg';
+import EditCartDialog from '../../CartManageDialogs/EditCartDialog/EditCartDialog';
 
 const ListItem = ({ cart }: ListItemProps) => {
   const { carts, setCarts, selectedCart, setSelectedCart } = useContext(CartsContext);
 
   const [isDeleting, setIsDeleting] = React.useState(false);
+
+  const [showEditDialog, setShowEditDialog] = React.useState(false);
 
   const handleCartSelect = () => {
     setSelectedCart(cart);
@@ -38,45 +42,50 @@ const ListItem = ({ cart }: ListItemProps) => {
     }
   };
 
-  const openCartEditDialog = () => {};
-
   const isSelected = selectedCart === cart;
   return (
-    <div className={styles.item} id={`cart-${cart.id}`}>
-      <button
-        className={`${isSelected && styles.active} ${styles.fullSizeSelectButton}`}
-        onClick={handleCartSelect}>
-        <span className={`${listStyles.firstColumn} ${listStyles.coulmn}`}>#{cart.id}</span>
-        <span className={`${listStyles.secondColumn} ${listStyles.coulmn}`}> {cart.total}$</span>
-        <span className={`${listStyles.thirdColumn} ${listStyles.coulmn}`}>
-          {cart.discountedTotal}$
-        </span>
-      </button>
-      <button
-        onClick={openCartEditDialog}
-        className={`${isSelected && styles.active} ${listStyles.editButtonColumn} ${
-          styles.editButton
-        }`}
-        disabled={isDeleting}>
-        <img
-          src={EditSVG}
-          alt="Trash can"
-          className={styles.editSVG}
-          style={{ width: `24px` }}></img>
-      </button>
-      <button
-        onClick={handleCartDelete}
-        className={`${isSelected && styles.active} ${listStyles.deleteButtonColumn} ${
-          styles.deleteButton
-        }`}
-        disabled={isDeleting}>
-        <img
-          src={TrashCanSVG}
-          alt="Trash can"
-          className={styles.deleteSVG}
-          style={{ width: `19px` }}></img>
-      </button>
-    </div>
+    <>
+      {showEditDialog &&
+        createPortal(
+          <EditCartDialog setShowDialog={setShowEditDialog} cartToEdit={cart} />,
+          document.body
+        )}
+      <div className={styles.item} id={`cart-${cart.id}`}>
+        <button
+          className={`${isSelected && styles.active} ${styles.fullSizeSelectButton}`}
+          onClick={handleCartSelect}>
+          <span className={`${listStyles.firstColumn} ${listStyles.coulmn}`}>#{cart.id}</span>
+          <span className={`${listStyles.secondColumn} ${listStyles.coulmn}`}> {cart.total}$</span>
+          <span className={`${listStyles.thirdColumn} ${listStyles.coulmn}`}>
+            {cart.discountedTotal}$
+          </span>
+        </button>
+        <button
+          onClick={() => setShowEditDialog(true)}
+          className={`${isSelected && styles.active} ${listStyles.editButtonColumn} ${
+            styles.editButton
+          }`}
+          disabled={isDeleting}>
+          <img
+            src={EditSVG}
+            alt="Trash can"
+            className={styles.editSVG}
+            style={{ width: `24px` }}></img>
+        </button>
+        <button
+          onClick={handleCartDelete}
+          className={`${isSelected && styles.active} ${listStyles.deleteButtonColumn} ${
+            styles.deleteButton
+          }`}
+          disabled={isDeleting}>
+          <img
+            src={TrashCanSVG}
+            alt="Trash can"
+            className={styles.deleteSVG}
+            style={{ width: `19px` }}></img>
+        </button>
+      </div>
+    </>
   );
 };
 

@@ -1,11 +1,11 @@
 import React from 'react';
 
+import { SortButtonProps } from '../types';
 import SortAsc from './../../../assets/sortArrows/sort-asc.svg';
 import SortDesc from './../../../assets/sortArrows/sort-desc.svg';
 import styles from './../CartsList.module.css';
-import { SortArrowsProps } from './../types';
 
-const SortArrows = ({ field, sortBy, setSortBy }: SortArrowsProps) => {
+const SortButton = ({ field, sortBy, setSortBy }: SortButtonProps) => {
   const active = sortBy.field === field;
 
   const swapDir = (dir: 'asc' | 'desc') => {
@@ -19,7 +19,7 @@ const SortArrows = ({ field, sortBy, setSortBy }: SortArrowsProps) => {
 
   return (
     <button
-      className={`${styles.sortArrows} ${active && styles.active}`}
+      className={`${styles.sortButton} ${active && styles.active}`}
       onClick={handleSortChange}>
       <img
         src={active && sortBy.dir === 'desc' ? SortDesc : SortAsc}
@@ -30,4 +30,4 @@ const SortArrows = ({ field, sortBy, setSortBy }: SortArrowsProps) => {
   );
 };
 
-export default SortArrows;
+export default SortButton;

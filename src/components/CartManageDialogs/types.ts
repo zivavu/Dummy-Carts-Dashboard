@@ -1,8 +1,18 @@
-import { IProduct } from './../../../types';
+import { ICart, IProduct } from '../../types';
+
 export interface NewCartDialogProps {
-  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowDialog: React.Dispatch<React.SetStateAction<boolean>>;
+}
+export interface EditCartDialogProps {
+  setShowDialog: React.Dispatch<React.SetStateAction<boolean>>;
+  cartToEdit: ICart;
 }
 
+export interface DialogBaseProps {
+  children: React.ReactNode;
+  title: string;
+  clickAwayHandler: () => void;
+}
 export interface ClickAwayListenerProps {
   children: React.ReactNode;
   clickAwayHandler: () => void;

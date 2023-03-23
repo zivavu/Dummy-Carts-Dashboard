@@ -30,10 +30,10 @@
   margin-left: 25px;
   text-align: center;
 }
-button.coulmn {
-  border: none;
+.clickable {
   font-size: 15px;
-  background-color: transparent;
+  cursor: pointer;
+  user-select: none;
 }
 
 .firstColumn {
@@ -62,10 +62,10 @@ button.coulmn {
   width: 35px;
 }
 
-.sortArrows {
+.sortButton {
   width: 26px;
   position: absolute;
-  right: -15px;
+  right: -19px;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
@@ -78,10 +78,10 @@ button.coulmn {
   filter: opacity(0.1);
 }
 
-.sortArrows:hover {
+.sortButton:hover {
   filter: opacity(0.5);
 }
 
-.sortArrows.active {
+.sortButton.active {
   filter: opacity(1);
 }

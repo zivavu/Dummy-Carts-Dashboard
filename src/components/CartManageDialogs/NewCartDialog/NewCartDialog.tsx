@@ -1,13 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { CartsContext } from '../../../App';
 import { ICart, IProduct } from '../../../types';
+import ClickAwayListener from '../ClickAwayListener/ClickAwayListener';
+import DialogBase from '../DialogBase/DialogBase';
+import dialogStyles from '../DialogBase/DialogBase.module.css';
+import { NewCartDialogProps } from '../types';
 import XMarkSVG from './../../../assets/x-mark.svg';
-import ClickAwayListener from './ClickAwayListener/ClickAwayListener';
 import styles from './NewCartDialog.module.css';
 import ProductAutocompleteInput from './ProductAutocompleteInput/ProductAutocompleteInput';
-import { NewCartDialogProps } from './types';
 
-const NewCartDialog = ({ setShowModal }: NewCartDialogProps) => {
+const NewCartDialog = ({ setShowDialog }: NewCartDialogProps) => {
   const { carts, setCarts, setSelectedCart } = useContext(CartsContext);
 
   const [productsList, setProductsList] = useState<IProduct[]>([]);
@@ -51,64 +53,52 @@ const NewCartDialog = ({ setShowModal }: NewCartDialogProps) => {
       console.error(console.error);
     } finally {
       setIsLoading(false);
-      setShowModal(false);
+      setShowDialog(false);
     }
   };
 
   const clickAwayHandler = () => {
-    setShowModal(false);
+    setShowDialog(false);
   };
 
   const showEmptyInputBox = cartProducts.length < 5;
   return (
-    <ClickAwayListener clickAwayHandler={clickAwayHandler}>
-      <div className={styles.dialog}>
-        <header className={styles.header}>
-          <button className={styles.closeButton} onClick={() => setShowModal(false)}>
-            <img
-              src={XMarkSVG}
-              alt="Close"
-              className={styles.closeSVG}
-              style={{ width: `80%` }}></img>
-          </button>
-          <h1 style={{ textAlign: `center`, margin: `0` }}>New Cart</h1>
-        </header>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleAddNewCart();
-          }}
-          className={styles.newCartForm}>
-          {[...cartProducts].map((el, i) => (
-            <ProductAutocompleteInput
-              key={el.id}
-              products={productsList}
-              cartProducts={cartProducts}
-              setCartsProducts={setCartsProducts}
-              initValue={el.title}
-              index={i}
-              isLoading={isLoading}
-            />
-          ))}
-          {showEmptyInputBox && (
-            <ProductAutocompleteInput
-              products={productsList}
-              cartProducts={cartProducts}
-              setCartsProducts={setCartsProducts}
-              initValue=""
-              index={cartProducts.length}
-              isLoading={isLoading}
-            />
-          )}
-          <button
-            className={styles.addCartButton}
-            type="submit"
-            disabled={isLoading || !cartProducts[0]}>
-            Add New Cart
-          </button>
-        </form>
-      </div>
-    </ClickAwayListener>
+    <DialogBase clickAwayHandler={clickAwayHandler} title="New Cart">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleAddNewCart();
+        }}
+        className={styles.newCartForm}>
+        {[...cartProducts].map((el, i) => (
+          <ProductAutocompleteInput
+            key={el.id}
+            products={productsList}
+            cartProducts={cartProducts}
+            setCartsProducts={setCartsProducts}
+            initValue={el.title}
+            index={i}
+            isLoading={isLoading}
+          />
+        ))}
+        {showEmptyInputBox && (
+          <ProductAutocompleteInput
+            products={productsList}
+            cartProducts={cartProducts}
+            setCartsProducts={setCartsProducts}
+            initValue=""
+            index={cartProducts.length}
+            isLoading={isLoading}
+          />
+        )}
+        <button
+          className={`${dialogStyles.submitButton} ${styles.submitButton}`}
+          type="submit"
+          disabled={isLoading || !cartProducts[0]}>
+          Add New Cart
+        </button>
+      </form>
+    </DialogBase>
   );
 };
 
