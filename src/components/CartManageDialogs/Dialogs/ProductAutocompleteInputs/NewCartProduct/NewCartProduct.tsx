@@ -8,13 +8,13 @@ import styles from './../ProductAutocomplete.module.css';
 const NewCartProductAutocomplete = ({
   cartProducts,
   setCartsProducts,
-  initValue,
+  initProduct,
   index,
   isLoading,
 }: ProductAutocompleteInputProps) => {
   const { productsList } = useContext(ProductsListContext);
 
-  const [inputValue, setInputValue] = React.useState(initValue);
+  const [inputValue, setInputValue] = React.useState(initProduct?.title || '');
   const [matches, setMatches] = React.useState<IProduct[]>([]);
 
   const handleInputChange = (e: any) => {
@@ -87,11 +87,25 @@ const NewCartProductAutocomplete = ({
     <div className={styles.productInputContainer}>
       <label style={{ textAlign: `left`, width: `80%` }}>Product #{index + 1}</label>
       <div style={{ display: `flex`, alignItems: `center` }}>
-        <input
-          className={styles.productInput}
-          value={inputValue}
-          disabled={!!cartProducts[index] || isLoading}
-          onChange={handleInputChange}></input>
+        <div className={styles.mainInputContainer}>
+          <input
+            className={styles.productInput}
+            value={inputValue}
+            disabled={!!cartProducts[index] || isLoading}
+            onChange={handleInputChange}></input>
+          {matches[0] ? (
+            <div className={styles.autocompleteDisplay}>
+              {matches.slice(0, 5).map((match) => (
+                <div
+                  key={match.id}
+                  className={styles.autocompleteOption}
+                  onClick={() => handleSetProduct(match)}>
+                  {match.title}
+                </div>
+              ))}
+            </div>
+          ) : null}
+        </div>
         {cartProducts[index] ? (
           <input
             className={styles.quantityInput}
@@ -112,18 +126,6 @@ const NewCartProductAutocomplete = ({
           </button>
         ) : null}
       </div>
-      {matches[0] ? (
-        <div className={styles.autocompleteDisplay}>
-          {matches.slice(0, 5).map((match) => (
-            <div
-              key={match.id}
-              className={styles.autocompleteOption}
-              onClick={() => handleSetProduct(match)}>
-              {match.title}
-            </div>
-          ))}
-        </div>
-      ) : null}
     </div>
   );
 };

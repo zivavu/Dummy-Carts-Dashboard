@@ -22,7 +22,6 @@ const NewCartDialog = ({ setShowDialog }: NewCartDialogProps) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          userId: 1,
           products: cartProducts.map((product) => {
             return { id: product.id, quantity: product.quantity };
           }),
@@ -45,8 +44,8 @@ const NewCartDialog = ({ setShowDialog }: NewCartDialogProps) => {
   const clickAwayHandler = () => {
     setShowDialog(false);
   };
-
   const showEmptyInputBox = cartProducts.length < 5;
+
   return (
     <DialogBase clickAwayHandler={clickAwayHandler} title="New Cart">
       <form
@@ -54,13 +53,13 @@ const NewCartDialog = ({ setShowDialog }: NewCartDialogProps) => {
           e.preventDefault();
           handleAddNewCart();
         }}
-        className={styles.newCartForm}>
-        {[...cartProducts].map((el, i) => (
+        className={dialogStyles.dialogForm}>
+        {[...cartProducts].map((product, i) => (
           <NewCartProductAutocomplete
-            key={el.id}
+            key={product.id}
             cartProducts={cartProducts}
             setCartsProducts={setCartsProducts}
-            initValue={el.title}
+            initProduct={product}
             index={i}
             isLoading={isLoading}
           />
@@ -69,7 +68,7 @@ const NewCartDialog = ({ setShowDialog }: NewCartDialogProps) => {
           <NewCartProductAutocomplete
             cartProducts={cartProducts}
             setCartsProducts={setCartsProducts}
-            initValue=""
+            initProduct={null}
             index={cartProducts.length}
             isLoading={isLoading}
           />

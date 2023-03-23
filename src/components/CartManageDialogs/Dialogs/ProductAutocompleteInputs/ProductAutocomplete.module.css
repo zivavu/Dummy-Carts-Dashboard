@@ -1,7 +1,11 @@
 .productInputContainer {
-  position: relative;
   width: 100%;
   margin-bottom: 15px;
+}
+
+.mainInputContainer {
+  position: relative;
+  width: 100%;
 }
 
 .productInput {
@@ -15,6 +19,7 @@
   border-radius: 5px;
   resize: none;
 }
+
 .productInput:focus,
 .productInput .autocompleteOption {
   border-bottom-left-radius: 0;
@@ -53,7 +58,13 @@
   background-color: var(--danger-color);
 }
 
+.productInput:focus ~ .autocompleteDisplay,
+.autocompleteDisplay:hover {
+  visibility: visible;
+}
+
 .autocompleteDisplay {
+  visibility: hidden;
   position: absolute;
   width: 100%;
   background-color: white;
@@ -77,7 +88,8 @@
   background-color: var(--gray30);
 }
 
-.productInput:disabled {
+.productInput:disabled,
+.validProductInput {
   border-color: var(--success-color);
-  border-radius: 5px;
+  border-radius: 5px !important;
 }

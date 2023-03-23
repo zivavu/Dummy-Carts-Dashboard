@@ -1,32 +1,55 @@
-import React, { useContext } from 'react';
-import TrashCanSVG from '../../../../../assets/trash-can.svg';
+import React, { useContext, useEffect, useRef } from 'react';
 import { ProductsListContext } from '../../../../../contexts/ProductsListContext';
 import { IProduct } from '../../../../../types';
 import { ProductAutocompleteInputProps } from '../types';
+import TrashCanSVG from './../../../../../assets/trash-can.svg';
 import styles from './../ProductAutocomplete.module.css';
 
 const EditCartProductAutocomplete = ({
   cartProducts,
   setCartsProducts,
-  initValue,
+  initProduct,
   index,
   isLoading,
 }: ProductAutocompleteInputProps) => {
   const { productsList } = useContext(ProductsListContext);
 
-  const [inputValue, setInputValue] = React.useState(initValue);
+  const [inputValue, setInputValue] = React.useState(initProduct?.title);
   const [matches, setMatches] = React.useState<IProduct[]>([]);
+
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const isProductValid = !!initProduct?.price;
+
+  const emptyCurrentProduct = () => {
+    if (isProductValid) {
+      setCartsProducts(
+        cartProducts.map((product, i) => {
+          return i === index
+            ? ({
+                id: Math.random(),
+                title: inputValue?.slice(0, -1),
+                price: 0,
+                quantity: initProduct.quantity,
+                discountedPrice: 0,
+                discountPercentage: 0,
+                total: 0,
+              } as IProduct)
+            : product;
+        })
+      );
+    }
+  };
 
   const handleInputChange = (e: any) => {
     const inputValue = e.target.value;
     setInputValue(inputValue);
-
+    emptyCurrentProduct();
     if (inputValue.length === 0) {
       setMatches([]);
       return;
     }
-
-    // Maches by title, sorts by title using the letters that were typed
+    // Maches by title, sorts by index of the letters that were typed
     const newMatches = productsList
       .filter((product) => product.title.toLowerCase().includes(inputValue.toLowerCase()))
       .sort((a, b) => {
@@ -47,11 +70,18 @@ const EditCartProductAutocomplete = ({
     setMatches(newMatches);
   };
 
+  useEffect(() => {
+    //set focus back to input
+    inputRef.current?.focus();
+  }, [inputValue]);
+
   const handleSetProduct = (match: IProduct) => {
     setMatches([]);
-    setInputValue('');
-    const newProduct = { ...match, quantity: 1 };
-    setCartsProducts(reduceDuplicatesToSingleValue([...cartProducts, newProduct]));
+    setInputValue(match.title);
+    const newProduct = { ...match, quantity: 1 } as IProduct;
+    console.log(match);
+    const newCartsProducts = cartProducts.map((product, i) => (i === index ? newProduct : product));
+    setCartsProducts(reduceDuplicatesToSingleValue([...newCartsProducts]));
   };
 
   const reduceDuplicatesToSingleValue = (products: IProduct[]) => {
@@ -69,7 +99,7 @@ const EditCartProductAutocomplete = ({
   };
 
   const handleDeleteProduct = () => {
-    setCartsProducts(cartProducts.filter((product) => product.id !== cartProducts[index].id));
+    setCartsProducts(cartProducts.filter((product, i) => i !== index));
   };
 
   const handleProductsQuantityChange = (e: any) => {
@@ -87,43 +117,43 @@ const EditCartProductAutocomplete = ({
     <div className={styles.productInputContainer}>
       <label style={{ textAlign: `left`, width: `80%` }}>Product #{index + 1}</label>
       <div style={{ display: `flex`, alignItems: `center` }}>
-        <input
-          className={styles.productInput}
-          value={inputValue}
-          disabled={!!cartProducts[index] || isLoading}
-          onChange={handleInputChange}></input>
-        {cartProducts[index] ? (
+        <div className={styles.mainInputContainer}>
           <input
-            className={styles.quantityInput}
-            type="number"
-            min={0}
-            max={100}
-            onChange={handleProductsQuantityChange}
-            value={cartProducts[index]?.quantity.toString()}
-            disabled={isLoading}></input>
-        ) : null}
-        {!isLoading && cartProducts[index] ? (
-          <button onClick={handleDeleteProduct} className={styles.productDeleteButton}>
-            <img
-              src={TrashCanSVG}
-              alt="Trash can"
-              className={styles.deleteSVG}
-              style={{ width: `18px` }}></img>
-          </button>
-        ) : null}
-      </div>
-      {matches[0] ? (
-        <div className={styles.autocompleteDisplay}>
-          {matches.slice(0, 5).map((match) => (
-            <div
-              key={match.id}
-              className={styles.autocompleteOption}
-              onClick={() => handleSetProduct(match)}>
-              {match.title}
+            className={`${styles.productInput} ${isProductValid && styles.validProductInput}`}
+            ref={inputRef}
+            value={inputValue}
+            disabled={isLoading}
+            onChange={handleInputChange}></input>
+          {matches[0] ? (
+            <div className={styles.autocompleteDisplay}>
+              {matches.slice(0, 5).map((match) => (
+                <div
+                  key={match.id}
+                  className={styles.autocompleteOption}
+                  onClick={() => handleSetProduct(match)}>
+                  {match.title}
+                </div>
+              ))}
             </div>
-          ))}
+          ) : null}
         </div>
-      ) : null}
+        <input
+          className={styles.quantityInput}
+          type="number"
+          min={0}
+          max={100}
+          onChange={handleProductsQuantityChange}
+          value={cartProducts[index]?.quantity.toString()}
+          disabled={isLoading}></input>
+
+        <button onClick={handleDeleteProduct} className={styles.productDeleteButton}>
+          <img
+            src={TrashCanSVG}
+            alt="Trash can"
+            className={styles.deleteSVG}
+            style={{ width: `18px` }}></img>
+        </button>
+      </div>
     </div>
   );
 };
