@@ -1,4 +1,3 @@
-import React from "react";
 import { Text } from "recharts";
 
 const CustomTickText = (props: any) => {
@@ -13,10 +12,10 @@ const CustomTickText = (props: any) => {
         textTransform: `capitalize`,
       }}
       width={140}
-      dominantBaseline='central'
-      textAnchor='middle'
-      fontSize='0.8rem'
-      verticalAnchor='start'
+      dominantBaseline="central"
+      textAnchor="middle"
+      fontSize="0.8rem"
+      verticalAnchor="start"
     >
       {payload.value}
     </Text>

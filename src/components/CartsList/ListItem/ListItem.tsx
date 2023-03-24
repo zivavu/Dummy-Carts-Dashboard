@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext, useState } from "react";
 import TrashCanSVG from "../../../assets/trash-can.svg";
 import { ICart } from "../../../types";
 import listStyles from "../CartsList.module.css";
@@ -13,8 +13,8 @@ import EditCartDialog from "../../CartManageDialogs/Dialogs/EditCartDialog/EditC
 const ListItem = ({ cart }: ListItemProps) => {
   const { carts, setCarts, selectedCart, setSelectedCart } = useContext(CartsContext);
 
-  const [isDeleting, setIsDeleting] = React.useState(false);
-  const [showEditDialog, setShowEditDialog] = React.useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [showEditDialog, setShowEditDialog] = useState(false);
 
   const handleCartSelect = () => {
     setSelectedCart(cart);
@@ -76,7 +76,7 @@ const ListItem = ({ cart }: ListItemProps) => {
         >
           <img
             src={EditSVG}
-            alt='Trash can'
+            alt="Trash can"
             className={styles.editSVG}
             style={{ width: `24px` }}
           ></img>
@@ -90,7 +90,7 @@ const ListItem = ({ cart }: ListItemProps) => {
         >
           <img
             src={TrashCanSVG}
-            alt='Trash can'
+            alt="Trash can"
             className={styles.deleteSVG}
             style={{ width: `19px` }}
           ></img>

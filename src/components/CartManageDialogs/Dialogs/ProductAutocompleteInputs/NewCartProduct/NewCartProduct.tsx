@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext, useState } from "react";
 import TrashCanSVG from "../../../../../assets/trash-can.svg";
 import { ProductsListContext } from "../../../../../contexts/ProductsListContext";
 import { IProduct } from "../../../../../types";
@@ -14,8 +14,8 @@ const NewCartProductAutocomplete = ({
 }: ProductAutocompleteInputProps) => {
   const { productsList } = useContext(ProductsListContext);
 
-  const [inputValue, setInputValue] = React.useState(initProduct?.title || ``);
-  const [matches, setMatches] = React.useState<IProduct[]>([]);
+  const [inputValue, setInputValue] = useState(initProduct?.title || ``);
+  const [matches, setMatches] = useState<IProduct[]>([]);
 
   const handleInputChange = (e: any) => {
     const inputValue = e.target.value;
@@ -129,7 +129,7 @@ const NewCartProductAutocomplete = ({
         {cartProducts[index] ? (
           <input
             className={styles.quantityInput}
-            type='number'
+            type="number"
             min={0}
             max={cartProducts[index].stock || 99}
             onChange={handleProductsQuantityChange}
@@ -141,7 +141,7 @@ const NewCartProductAutocomplete = ({
           <button onClick={handleDeleteProduct} className={styles.productDeleteButton}>
             <img
               src={TrashCanSVG}
-              alt='Trash can'
+              alt="Trash can"
               className={styles.deleteSVG}
               style={{ width: `18px` }}
             ></img>

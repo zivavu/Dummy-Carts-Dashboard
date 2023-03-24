@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { ProductsListContext } from "../../../../../contexts/ProductsListContext";
 import { IProduct } from "../../../../../types";
 import { ProductAutocompleteInputProps } from "../types";
@@ -14,8 +14,8 @@ const EditCartProductAutocomplete = ({
 }: ProductAutocompleteInputProps) => {
   const { productsList } = useContext(ProductsListContext);
 
-  const [inputValue, setInputValue] = React.useState(initProduct?.title);
-  const [matches, setMatches] = React.useState<IProduct[]>([]);
+  const [inputValue, setInputValue] = useState(initProduct?.title);
+  const [matches, setMatches] = useState<IProduct[]>([]);
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -106,6 +106,7 @@ const EditCartProductAutocomplete = ({
 
   const handleProductsQuantityChange = (e: any) => {
     const productToEdit = cartProducts[index];
+
     if (e.target.value > (productToEdit?.stock || 99)) e.target.value = productToEdit?.stock || 99;
     setCartsProducts(
       cartProducts.map((product) =>
@@ -161,7 +162,7 @@ const EditCartProductAutocomplete = ({
         </div>
         <input
           className={styles.quantityInput}
-          type='number'
+          type="number"
           min={0}
           max={cartProducts[index].stock || 99}
           onChange={handleProductsQuantityChange}
@@ -173,7 +174,7 @@ const EditCartProductAutocomplete = ({
           <button className={styles.productDeleteButton} onClick={handleDeleteProduct}>
             <img
               src={TrashCanSVG}
-              alt='Trash can'
+              alt="Trash can"
               className={styles.deleteSVG}
               style={{ width: `18px` }}
             ></img>

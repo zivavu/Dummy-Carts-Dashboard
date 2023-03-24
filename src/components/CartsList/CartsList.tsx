@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext, useState } from "react";
 import styles from "./CartsList.module.css";
 import ListItem from "./ListItem/ListItem";
 import { ISortBy } from "./types";
@@ -12,7 +12,7 @@ const CartsList = () => {
 
   useScrollToSelectedCart();
 
-  const [sortBy, setSortBy] = React.useState<ISortBy>({
+  const [sortBy, setSortBy] = useState<ISortBy>({
     field: `id`,
     dir: `desc`,
   });
@@ -50,21 +50,21 @@ const CartsList = () => {
           onClick={() => handleSortChange(`id`)}
         >
           <span>ID</span>
-          <SortButton field='id' sortBy={sortBy} setSortBy={setSortBy} />
+          <SortButton field="id" sortBy={sortBy} setSortBy={setSortBy} />
         </div>
         <div
           className={`${styles.secondColumn} ${styles.coulmn} ${styles.clickable}`}
           onClick={() => handleSortChange(`total`)}
         >
           <span>Total Price</span>
-          <SortButton field='total' sortBy={sortBy} setSortBy={setSortBy} />
+          <SortButton field="total" sortBy={sortBy} setSortBy={setSortBy} />
         </div>
         <div
           className={`${styles.thirdColumn} ${styles.coulmn} ${styles.clickable}`}
           onClick={() => handleSortChange(`discountedTotal`)}
         >
           <span>Discounted To</span>
-          <SortButton field='discountedTotal' sortBy={sortBy} setSortBy={setSortBy} />
+          <SortButton field="discountedTotal" sortBy={sortBy} setSortBy={setSortBy} />
         </div>
       </div>
       <div className={styles.listContent}>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { createPortal } from "react-dom";
 import NewCartDialog from "../CartManageDialogs/Dialogs/NewCartDialog/NewCartDialog";
 import styles from "./SiteHeading.module.css";

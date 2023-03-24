@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { CartsContext } from "../../../../contexts/CartsContext";
 import { ICart, IProduct } from "../../../../types";
 import DialogBase from "../../DialogBase/DialogBase";
@@ -53,7 +53,7 @@ const NewCartDialog = ({ setShowDialog }: NewCartDialogProps) => {
   const showEmptyInputBox = cartProducts.length < 5 && !isLoading;
 
   return (
-    <DialogBase clickAwayHandler={clickAwayHandler} title='New Cart'>
+    <DialogBase clickAwayHandler={clickAwayHandler} title="New Cart">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -82,7 +82,7 @@ const NewCartDialog = ({ setShowDialog }: NewCartDialogProps) => {
         )}
         <button
           className={`${dialogStyles.submitButton} ${styles.submitButton}`}
-          type='submit'
+          type="submit"
           disabled={isLoading || !cartProducts[0]}
         >
           Add New Cart

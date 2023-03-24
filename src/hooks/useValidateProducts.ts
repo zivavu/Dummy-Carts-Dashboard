@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ProductsListContext } from "../contexts/ProductsListContext";
 import { IProduct } from "../types";
 
 const useValidateProducts = ({ productsToValidate }: { productsToValidate: IProduct[] }) => {
   const { productsList } = useContext(ProductsListContext);
-  const [validated, setValidated] = React.useState<IProduct[]>([]);
+  const [validated, setValidated] = useState<IProduct[]>([]);
 
   useEffect(() => {
     const validatedProducts = productsToValidate.filter((product) => {

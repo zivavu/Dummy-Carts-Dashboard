@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { CartsContext } from "../../../../contexts/CartsContext";
 import { ICart, IProduct } from "../../../../types";
 import DialogBase from "../../DialogBase/DialogBase";
@@ -86,7 +86,7 @@ const EditCartDialog = ({ cartToEdit, setShowDialog }: EditCartDialogProps) => {
           />
         )}
 
-        <button className={dialogStyles.submitButton} type='submit' disabled={isLoading}>
+        <button className={dialogStyles.submitButton} type="submit" disabled={isLoading}>
           Submit Changes
         </button>
       </form>

@@ -1,4 +1,3 @@
-import React from "react";
 import { CartesianGrid, Label, Scatter, ScatterChart, Tooltip, XAxis, YAxis } from "recharts";
 import styles from "./CartProductsChart.module.css";
 import EmptyChartPlaceholder from "./ChartPlaceholders/EmptyChartPlaceholder";
@@ -36,25 +35,25 @@ const CartProductsChart = ({ selectedCart }: CartProductsChartProps) => {
         data={data}
       >
         <CartesianGrid />
-        <XAxis dataKey='title' tick={<CustomTickText />} minTickGap={-200} name='Name' />
+        <XAxis dataKey="title" tick={<CustomTickText />} minTickGap={-200} name="Name" />
         <YAxis>
-          <Label value='Price' position='insideTop' offset={-25}></Label>
+          <Label value="Price" position="insideTop" offset={-25}></Label>
         </YAxis>
         <Tooltip content={<CustomTooltip />} />
         <Scatter
-          type='monotone'
-          dataKey='totalPrice'
-          name='Price'
+          type="monotone"
+          dataKey="totalPrice"
+          name="Price"
           line
-          fill='#5b58d6'
+          fill="#5b58d6"
           isAnimationActive={false}
         />
         <Scatter
-          type='monotone'
-          dataKey='discountedTotal'
-          name='Discounted price'
+          type="monotone"
+          dataKey="discountedTotal"
+          name="Discounted price"
           line
-          fill='#49b349'
+          fill="#49b349"
           isAnimationActive={false}
         />
       </ScatterChart>

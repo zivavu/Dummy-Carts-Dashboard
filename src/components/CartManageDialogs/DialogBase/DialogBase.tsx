@@ -1,4 +1,3 @@
-import React from "react";
 import ClickAwayListener from "../ClickAwayListener/ClickAwayListener";
 import { DialogBaseProps } from "../types";
 import XMarkSVG from "./../../../assets/x-mark.svg";
@@ -11,7 +10,7 @@ const DialogBase = ({ children, title, clickAwayHandler }: DialogBaseProps) => {
           <button className={styles.closeButton} onClick={clickAwayHandler}>
             <img
               src={XMarkSVG}
-              alt='Close'
+              alt="Close"
               className={styles.closeSVG}
               style={{ width: `80%` }}
             ></img>

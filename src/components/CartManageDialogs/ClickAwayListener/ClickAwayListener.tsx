@@ -1,4 +1,3 @@
-import React from "react";
 import { ClickAwayListenerProps } from "../types";
 import styles from "./ClickAwayListener.module.css";
 const ClickAwayListener = ({ children, clickAwayHandler }: ClickAwayListenerProps) => {

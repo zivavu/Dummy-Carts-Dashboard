@@ -1,5 +1,3 @@
-import React from "react";
-
 import { SortButtonProps } from "../types";
 import SortAsc from "./../../../assets/sortArrows/sort-asc.svg";
 import SortDesc from "./../../../assets/sortArrows/sort-desc.svg";
@@ -32,7 +30,7 @@ const SortButton = ({ field, sortBy, setSortBy }: SortButtonProps) => {
     >
       <img
         src={active && sortBy.dir === `desc` ? SortDesc : SortAsc}
-        alt='Trash can'
+        alt="Trash can"
         className={styles.deleteSVG}
         style={{ width: `100%` }}
       ></img>
