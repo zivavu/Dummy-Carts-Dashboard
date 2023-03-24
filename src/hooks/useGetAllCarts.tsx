@@ -5,6 +5,7 @@ const useGetAllCarts = () => {
   const [carts, setCarts] = useState<ICart[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  console.log(carts);
 
   useEffect(() => {
     const fetchCarts = async () => {

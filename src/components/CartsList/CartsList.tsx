@@ -1,11 +1,10 @@
 import { useContext, useState } from "react";
-import styles from "./CartsList.module.css";
-import ListItem from "./ListItem/ListItem";
-import { ISortBy } from "./types";
-
 import { CartsContext } from "../../contexts/CartsContext";
 import useScrollToSelectedCart from "../../hooks/useScrollToSelectedCart";
+import styles from "./CartsList.module.css";
+import ListItem from "./ListItem/ListItem";
 import SortButton from "./SortButton/SortButton";
+import { ISortBy } from "./types";
 
 const CartsList = () => {
   const { carts } = useContext(CartsContext);

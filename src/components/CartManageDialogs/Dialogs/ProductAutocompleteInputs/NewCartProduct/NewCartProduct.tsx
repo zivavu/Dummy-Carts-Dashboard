@@ -76,7 +76,8 @@ const NewCartProductAutocomplete = ({
   };
 
   const handleProductsQuantityChange = (e: any) => {
-    if (e.target.value > 100) e.target.value = 99;
+    if (e.target.value > (cartProducts[index].stock || 99))
+      e.target.value = cartProducts[index].stock || 99;
     setCartsProducts(
       cartProducts.map((product) =>
         product.id === cartProducts[index].id

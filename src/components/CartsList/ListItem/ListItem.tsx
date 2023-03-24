@@ -1,14 +1,13 @@
 import { useContext, useState } from "react";
+import { createPortal } from "react-dom";
+import EditSVG from "../../../assets/edit.svg";
 import TrashCanSVG from "../../../assets/trash-can.svg";
+import { CartsContext } from "../../../contexts/CartsContext";
 import { ICart } from "../../../types";
+import EditCartDialog from "../../CartManageDialogs/Dialogs/EditCartDialog/EditCartDialog";
 import listStyles from "../CartsList.module.css";
 import styles from "./ListItem.module.css";
 import { ListItemProps } from "./types";
-
-import { createPortal } from "react-dom";
-import EditSVG from "../../../assets/edit.svg";
-import { CartsContext } from "../../../contexts/CartsContext";
-import EditCartDialog from "../../CartManageDialogs/Dialogs/EditCartDialog/EditCartDialog";
 
 const ListItem = ({ cart }: ListItemProps) => {
   const { carts, setCarts, selectedCart, setSelectedCart } = useContext(CartsContext);
