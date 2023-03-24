@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { CartsContext } from '../../../../contexts/CartsContext';
-import { ProductsListContext } from '../../../../contexts/ProductsListContext';
 import { ICart, IProduct } from '../../../../types';
 import DialogBase from '../../DialogBase/DialogBase';
 import dialogStyles from '../../DialogBase/DialogBase.module.css';
@@ -22,6 +21,7 @@ const NewCartDialog = ({ setShowDialog }: NewCartDialogProps) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          userId: 1,
           products: cartProducts.map((product) => {
             return { id: product.id, quantity: product.quantity };
           }),
