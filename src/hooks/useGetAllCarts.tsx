@@ -10,11 +10,11 @@ const useGetAllCarts = () => {
     const fetchCarts = async () => {
       setIsLoading(true);
       try {
-        const data = await fetch('https://dummyjson.com/carts');
+        const data = await fetch(`https://dummyjson.com/carts`);
         const json = await data.json();
         setCarts(json.carts as ICart[]);
       } catch {
-        setError("Couldn't fetch carts");
+        setError(`Couldn't fetch carts`);
         console.error(console.error);
       } finally {
         setIsLoading(false);

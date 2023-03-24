@@ -85,8 +85,8 @@ const NewCartProductAutocomplete = ({
 
   return (
     <div className={styles.productInputContainer}>
-      <label style={{ textAlign: `left`, width: `80%` }}>Product #{index + 1}</label>
-      <div style={{ display: `flex`, alignItems: `center` }}>
+      <label style={{ textAlign: 'left', width: '80%' }}>Product #{index + 1}</label>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
         <div className={styles.mainInputContainer}>
           <input
             className={styles.productInput}
@@ -122,7 +122,7 @@ const NewCartProductAutocomplete = ({
               src={TrashCanSVG}
               alt="Trash can"
               className={styles.deleteSVG}
-              style={{ width: `18px` }}></img>
+              style={{ width: '18px' }}></img>
           </button>
         ) : null}
       </div>

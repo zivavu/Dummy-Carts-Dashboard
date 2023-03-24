@@ -78,7 +78,7 @@ const ListItem = ({ cart }: ListItemProps) => {
             src={EditSVG}
             alt="Trash can"
             className={styles.editSVG}
-            style={{ width: `24px` }}></img>
+            style={{ width: '24px' }}></img>
         </button>
         <button
           onClick={handleCartDelete}
@@ -90,7 +90,7 @@ const ListItem = ({ cart }: ListItemProps) => {
             src={TrashCanSVG}
             alt="Trash can"
             className={styles.deleteSVG}
-            style={{ width: `19px` }}></img>
+            style={{ width: '19px' }}></img>
         </button>
       </div>
     </>

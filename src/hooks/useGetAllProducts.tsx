@@ -12,11 +12,11 @@ const useGetAllProducts = () => {
     const fetchProducts = async () => {
       setIsLoading(true);
       try {
-        const data = await fetch('https://dummyjson.com/products');
+        const data = await fetch(`https://dummyjson.com/products`);
         const json = await data.json();
         setProductsList(json.products as IProduct[]);
       } catch {
-        setError('Error fetching products');
+        setError(`Error fetching products`);
         console.error(console.error);
       } finally {
         setIsLoading(false);
