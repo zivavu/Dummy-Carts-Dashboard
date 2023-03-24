@@ -79,7 +79,6 @@ const EditCartProductAutocomplete = ({
     setMatches([]);
     setInputValue(match.title);
     const newProduct = { ...match, quantity: 1 } as IProduct;
-    console.log(match);
     const newCartsProducts = cartProducts.map((product, i) => (i === index ? newProduct : product));
     setCartsProducts(reduceDuplicatesToSingleValue([...newCartsProducts]));
   };
@@ -119,7 +118,9 @@ const EditCartProductAutocomplete = ({
       <div style={{ display: `flex`, alignItems: `center` }}>
         <div className={styles.mainInputContainer}>
           <input
-            className={`${styles.productInput} ${isProductValid && styles.validProductInput}`}
+            className={`${styles.productInput} ${styles.editProductInput} ${
+              isProductValid && styles.validProductInput
+            }`}
             ref={inputRef}
             value={inputValue}
             disabled={isLoading}
@@ -146,13 +147,15 @@ const EditCartProductAutocomplete = ({
           value={cartProducts[index]?.quantity.toString()}
           disabled={isLoading}></input>
 
-        <button onClick={handleDeleteProduct} className={styles.productDeleteButton}>
-          <img
-            src={TrashCanSVG}
-            alt="Trash can"
-            className={styles.deleteSVG}
-            style={{ width: `18px` }}></img>
-        </button>
+        {!isLoading && cartProducts[index] ? (
+          <button className={styles.productDeleteButton} onClick={handleDeleteProduct}>
+            <img
+              src={TrashCanSVG}
+              alt="Trash can"
+              className={styles.deleteSVG}
+              style={{ width: `18px` }}></img>
+          </button>
+        ) : null}
       </div>
     </div>
   );

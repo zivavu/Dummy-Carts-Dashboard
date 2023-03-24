@@ -44,7 +44,7 @@ const NewCartDialog = ({ setShowDialog }: NewCartDialogProps) => {
   const clickAwayHandler = () => {
     setShowDialog(false);
   };
-  const showEmptyInputBox = cartProducts.length < 5;
+  const showEmptyInputBox = cartProducts.length < 5 && !isLoading;
 
   return (
     <DialogBase clickAwayHandler={clickAwayHandler} title="New Cart">

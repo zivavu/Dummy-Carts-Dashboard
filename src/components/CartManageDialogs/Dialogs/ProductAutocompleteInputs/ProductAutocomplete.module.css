@@ -19,6 +19,9 @@
   border-radius: 5px;
   resize: none;
 }
+.editProductInput {
+  border: 1px solid var(--danger-color);
+}
 
 .productInput:focus,
 .productInput .autocompleteOption {
@@ -27,8 +30,6 @@
 }
 
 .quantityInput {
-  -webkit-appearance: none;
-  -moz-appearance: textfield;
   outline: none;
 
   width: 38px;

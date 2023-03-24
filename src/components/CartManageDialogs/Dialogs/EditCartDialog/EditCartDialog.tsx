@@ -20,7 +20,6 @@ const EditCartDialog = ({ cartToEdit, setShowDialog }: EditCartDialogProps) => {
 
   const isProductValid = (product: IProduct) => {
     const { id, price, quantity, title, total } = product;
-    console.log(!!(id && price && quantity && title), id, price, quantity, title);
     return !!(id && price && quantity && title) ? true : false;
   };
 
@@ -28,26 +27,26 @@ const EditCartDialog = ({ cartToEdit, setShowDialog }: EditCartDialogProps) => {
     if (cartProducts.length === 0) return;
     setIsLoading(true);
     try {
-      console.log(cartProducts, 'produicsds');
-      const productsToRequest = [
-        ...cartProducts
-          .filter((product) => isProductValid(product))
-          .map((product) => ({ id: product.id, quantity: product.quantity || 1 })),
-      ];
-      console.log(productsToRequest);
+      const validProducts = [...cartProducts.filter((product) => isProductValid(product))];
+      const productsToRequers = validProducts.map((product) => ({
+        id: product.id,
+        quantity: product.quantity || 1,
+      }));
+      setCartsProducts(validProducts);
       const data = await fetch(`https://dummyjson.com/carts/${cartToEdit.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          products: productsToRequest,
+          products: validProducts,
         }),
       });
       const cartResponse = (await data.json()) as ICart;
       if (!cartResponse?.products) return;
-      console.log(cartResponse);
 
       const newCarts = carts.map((cart) => (cart.id === cartToEdit.id ? cartResponse : cart));
+
       setCarts(newCarts);
+      setSelectedCart(cartResponse);
     } catch {
       console.error(console.error);
     } finally {
@@ -56,7 +55,7 @@ const EditCartDialog = ({ cartToEdit, setShowDialog }: EditCartDialogProps) => {
     }
   };
 
-  const showEmptyInputBox = cartProducts.length < 5;
+  const showEmptyInputBox = cartProducts.length < 5 && !isLoading;
 
   return (
     <DialogBase clickAwayHandler={clickAwayHandler} title="Edit Cart">
