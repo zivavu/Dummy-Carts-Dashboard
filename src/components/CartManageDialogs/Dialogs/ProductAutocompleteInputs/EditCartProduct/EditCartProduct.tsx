@@ -21,14 +21,14 @@ const EditCartProductAutocomplete = ({
 
   const isProductValid = !!initProduct?.price;
 
-  const emptyCurrentProduct = () => {
+  const emptyCurrentProduct = (inputValue: string) => {
     if (isProductValid) {
       setCartsProducts(
         cartProducts.map((product, i) => {
           return i === index
             ? ({
                 id: Math.random(),
-                title: inputValue?.slice(0, -1),
+                title: inputValue,
                 price: 0,
                 quantity: initProduct.quantity,
                 discountedPrice: 0,
@@ -42,9 +42,9 @@ const EditCartProductAutocomplete = ({
   };
 
   const handleInputChange = (e: any) => {
-    const inputValue = e.target.value;
+    const inputValue = e.target.value as string;
     setInputValue(inputValue);
-    emptyCurrentProduct();
+    emptyCurrentProduct(e.target.value);
     if (inputValue.length === 0) {
       setMatches([]);
       return;
