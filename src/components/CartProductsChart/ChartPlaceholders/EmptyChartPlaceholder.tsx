@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './../CartProductsChart.module.css';
+import React from "react";
+import styles from "./../CartProductsChart.module.css";
 
 function EmptyChartPlaceholder() {
   return (

@@ -1,4 +1,4 @@
-@import './../../colors.module.css';
+@import "./../../colors.module.css";
 
 .list {
   border-right: 1px solid var(--gray30);

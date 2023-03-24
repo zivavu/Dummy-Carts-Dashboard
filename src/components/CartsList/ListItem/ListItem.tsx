@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
-import TrashCanSVG from '../../../assets/trash-can.svg';
-import { ICart } from '../../../types';
-import listStyles from '../CartsList.module.css';
-import styles from './ListItem.module.css';
-import { ListItemProps } from './types';
+import React, { useContext } from "react";
+import TrashCanSVG from "../../../assets/trash-can.svg";
+import { ICart } from "../../../types";
+import listStyles from "../CartsList.module.css";
+import styles from "./ListItem.module.css";
+import { ListItemProps } from "./types";
 
-import { createPortal } from 'react-dom';
-import EditSVG from '../../../assets/edit.svg';
-import { CartsContext } from '../../../contexts/CartsContext';
-import EditCartDialog from '../../CartManageDialogs/Dialogs/EditCartDialog/EditCartDialog';
+import { createPortal } from "react-dom";
+import EditSVG from "../../../assets/edit.svg";
+import { CartsContext } from "../../../contexts/CartsContext";
+import EditCartDialog from "../../CartManageDialogs/Dialogs/EditCartDialog/EditCartDialog";
 
 const ListItem = ({ cart }: ListItemProps) => {
   const { carts, setCarts, selectedCart, setSelectedCart } = useContext(CartsContext);
@@ -33,9 +33,7 @@ const ListItem = ({ cart }: ListItemProps) => {
     }
 
     try {
-      const data = await fetch(`https://dummyjson.com/carts/${cart.id}`, {
-        method: `DELETE`,
-      });
+      const data = await fetch(`https://dummyjson.com/carts/${cart.id}`, { method: `DELETE` });
       const responseCart = await data.json();
       const newCarts = carts.filter((oldCart) => oldCart.id !== responseCart.id) as ICart[];
       setCarts(newCarts);
@@ -61,7 +59,8 @@ const ListItem = ({ cart }: ListItemProps) => {
       <div className={styles.item} id={`cart-${cart.id}`}>
         <button
           className={`${isSelected && styles.active} ${styles.fullSizeSelectButton}`}
-          onClick={handleCartSelect}>
+          onClick={handleCartSelect}
+        >
           <span className={`${listStyles.firstColumn} ${listStyles.coulmn}`}>#{cart.id}</span>
           <span className={`${listStyles.secondColumn} ${listStyles.coulmn}`}> {cart.total}$</span>
           <span className={`${listStyles.thirdColumn} ${listStyles.coulmn}`}>
@@ -73,24 +72,28 @@ const ListItem = ({ cart }: ListItemProps) => {
           className={`${isSelected && styles.active} ${listStyles.editButtonColumn} ${
             styles.editButton
           }`}
-          disabled={isDeleting}>
+          disabled={isDeleting}
+        >
           <img
             src={EditSVG}
-            alt="Trash can"
+            alt='Trash can'
             className={styles.editSVG}
-            style={{ width: `24px` }}></img>
+            style={{ width: `24px` }}
+          ></img>
         </button>
         <button
           onClick={handleCartDelete}
           className={`${isSelected && styles.active} ${listStyles.deleteButtonColumn} ${
             styles.deleteButton
           }`}
-          disabled={isDeleting}>
+          disabled={isDeleting}
+        >
           <img
             src={TrashCanSVG}
-            alt="Trash can"
+            alt='Trash can'
             className={styles.deleteSVG}
-            style={{ width: `19px` }}></img>
+            style={{ width: `19px` }}
+          ></img>
         </button>
       </div>
     </>

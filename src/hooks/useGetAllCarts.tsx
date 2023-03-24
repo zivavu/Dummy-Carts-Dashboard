@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { ICart } from '../types';
+import React, { useEffect, useState } from "react";
+import { ICart } from "../types";
 
 const useGetAllCarts = () => {
   const [carts, setCarts] = useState<ICart[]>([]);
@@ -15,7 +15,6 @@ const useGetAllCarts = () => {
         setCarts(json.carts as ICart[]);
       } catch {
         setError(`Couldn't fetch carts`);
-        console.error(console.error);
       } finally {
         setIsLoading(false);
       }
@@ -23,7 +22,12 @@ const useGetAllCarts = () => {
     fetchCarts();
   }, []);
 
-  return { carts, setCarts, error, isLoading };
+  return {
+    carts,
+    setCarts,
+    error,
+    isLoading,
+  };
 };
 
 export default useGetAllCarts;

@@ -1,4 +1,4 @@
-import { ICart, IProduct } from '../types';
+import { ICart, IProduct } from "../types";
 
 export interface ICartsContext {
   carts: ICart[];

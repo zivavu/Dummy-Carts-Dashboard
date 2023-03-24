@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react';
-import { CartsContext } from '../../../../contexts/CartsContext';
-import { ICart, IProduct } from '../../../../types';
-import DialogBase from '../../DialogBase/DialogBase';
-import dialogStyles from '../../DialogBase/DialogBase.module.css';
-import NewCartProductAutocomplete from '../ProductAutocompleteInputs/NewCartProduct/NewCartProduct';
-import styles from './NewCartDialog.module.css';
-import { NewCartDialogProps } from './types';
+import React, { useContext, useState } from "react";
+import { CartsContext } from "../../../../contexts/CartsContext";
+import { ICart, IProduct } from "../../../../types";
+import DialogBase from "../../DialogBase/DialogBase";
+import dialogStyles from "../../DialogBase/DialogBase.module.css";
+import NewCartProductAutocomplete from "../ProductAutocompleteInputs/NewCartProduct/NewCartProduct";
+import styles from "./NewCartDialog.module.css";
+import { NewCartDialogProps } from "./types";
 
 const NewCartDialog = ({ setShowDialog }: NewCartDialogProps) => {
   const { carts, setCarts, setSelectedCart } = useContext(CartsContext);
@@ -19,18 +19,24 @@ const NewCartDialog = ({ setShowDialog }: NewCartDialogProps) => {
     try {
       const data = await fetch(`https://dummyjson.com/carts/add`, {
         method: `POST`,
-        headers: { 'Content-Type': `application/json` },
+        headers: { "Content-Type": `application/json` },
         body: JSON.stringify({
           userId: 1,
           products: cartProducts.map((product) => {
-            return { id: product.id, quantity: product.quantity };
+            return {
+              id: product.id,
+              quantity: product.quantity,
+            };
           }),
         }),
       });
       const cart = await data.json();
       if (cart.length === 0) return;
 
-      const newCart = { ...cart, id: carts[carts.length - 1].id + 1 } as ICart;
+      const newCart = {
+        ...cart,
+        id: carts[carts.length - 1].id + 1,
+      } as ICart;
       setCarts((prevCarts) => [...prevCarts, newCart]);
       setSelectedCart(newCart);
     } catch {
@@ -47,13 +53,14 @@ const NewCartDialog = ({ setShowDialog }: NewCartDialogProps) => {
   const showEmptyInputBox = cartProducts.length < 5 && !isLoading;
 
   return (
-    <DialogBase clickAwayHandler={clickAwayHandler} title="New Cart">
+    <DialogBase clickAwayHandler={clickAwayHandler} title='New Cart'>
       <form
         onSubmit={(e) => {
           e.preventDefault();
           handleAddNewCart();
         }}
-        className={dialogStyles.dialogForm}>
+        className={dialogStyles.dialogForm}
+      >
         {[...cartProducts].map((product, i) => (
           <NewCartProductAutocomplete
             key={product.id}
@@ -75,8 +82,9 @@ const NewCartDialog = ({ setShowDialog }: NewCartDialogProps) => {
         )}
         <button
           className={`${dialogStyles.submitButton} ${styles.submitButton}`}
-          type="submit"
-          disabled={isLoading || !cartProducts[0]}>
+          type='submit'
+          disabled={isLoading || !cartProducts[0]}
+        >
           Add New Cart
         </button>
       </form>

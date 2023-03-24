@@ -1,4 +1,4 @@
-import { ICart } from '../../../../types';
+import { ICart } from "../../../../types";
 
 export interface NewCartDialogProps {
   setShowDialog: React.Dispatch<React.SetStateAction<boolean>>;

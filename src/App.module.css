@@ -1,4 +1,4 @@
-@import 'colors.module.css';
+@import "colors.module.css";
 body {
   background-color: var(--gray05);
 }
@@ -6,7 +6,7 @@ button {
   cursor: pointer;
 }
 * {
-  font-family: 'Signika Negative', sans-serif;
+  font-family: "Signika Negative", sans-serif;
   font-weight: 500;
 }
 

@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { IProduct } from '../types';
+import React, { useEffect, useState } from "react";
+import { IProduct } from "../types";
 
 const useGetAllProducts = () => {
   const [productsList, setProductsList] = useState<IProduct[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-
-  console.log(productsList);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -17,7 +15,6 @@ const useGetAllProducts = () => {
         setProductsList(json.products as IProduct[]);
       } catch {
         setError(`Error fetching products`);
-        console.error(console.error);
       } finally {
         setIsLoading(false);
       }
@@ -25,7 +22,12 @@ const useGetAllProducts = () => {
     fetchProducts();
   }, []);
 
-  return { productsList, error, setError, isLoading };
+  return {
+    productsList,
+    error,
+    setError,
+    isLoading,
+  };
 };
 
 export default useGetAllProducts;

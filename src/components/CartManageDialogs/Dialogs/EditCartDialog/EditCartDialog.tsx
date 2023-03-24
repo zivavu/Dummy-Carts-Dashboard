@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react';
-import { CartsContext } from '../../../../contexts/CartsContext';
-import { ICart, IProduct } from '../../../../types';
-import DialogBase from '../../DialogBase/DialogBase';
-import dialogStyles from '../../DialogBase/DialogBase.module.css';
-import { EditCartDialogProps } from '../NewCartDialog/types';
-import EditCartProductAutocomplete from '../ProductAutocompleteInputs/EditCartProduct/EditCartProduct';
-import NewCartProductAutocomplete from '../ProductAutocompleteInputs/NewCartProduct/NewCartProduct';
+import React, { useContext, useState } from "react";
+import { CartsContext } from "../../../../contexts/CartsContext";
+import { ICart, IProduct } from "../../../../types";
+import DialogBase from "../../DialogBase/DialogBase";
+import dialogStyles from "../../DialogBase/DialogBase.module.css";
+import { EditCartDialogProps } from "../NewCartDialog/types";
+import EditCartProductAutocomplete from "../ProductAutocompleteInputs/EditCartProduct/EditCartProduct";
+import NewCartProductAutocomplete from "../ProductAutocompleteInputs/NewCartProduct/NewCartProduct";
 
 const EditCartDialog = ({ cartToEdit, setShowDialog }: EditCartDialogProps) => {
   const { carts, setCarts, setSelectedCart } = useContext(CartsContext);
@@ -33,13 +33,10 @@ const EditCartDialog = ({ cartToEdit, setShowDialog }: EditCartDialogProps) => {
         quantity: product.quantity || 1,
       }));
       setCartsProducts(validProducts);
-      console.log(validProducts);
       const data = await fetch(`https://dummyjson.com/carts/${cartToEdit.id}`, {
         method: `PUT`,
-        headers: { 'Content-Type': `application/json` },
-        body: JSON.stringify({
-          products: productsToRequest,
-        }),
+        headers: { "Content-Type": `application/json` },
+        body: JSON.stringify({ products: productsToRequest }),
       });
       const cartResponse = (await data.json()) as ICart;
       if (!cartResponse?.products) return;
@@ -65,7 +62,8 @@ const EditCartDialog = ({ cartToEdit, setShowDialog }: EditCartDialogProps) => {
         onSubmit={(e) => {
           e.preventDefault();
           handleCartUpdate();
-        }}>
+        }}
+      >
         {cartProducts.map((product, i) => {
           return (
             <EditCartProductAutocomplete
@@ -88,7 +86,7 @@ const EditCartDialog = ({ cartToEdit, setShowDialog }: EditCartDialogProps) => {
           />
         )}
 
-        <button className={dialogStyles.submitButton} type="submit" disabled={isLoading}>
+        <button className={dialogStyles.submitButton} type='submit' disabled={isLoading}>
           Submit Changes
         </button>
       </form>

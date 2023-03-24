@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useRef } from 'react';
-import { ProductsListContext } from '../../../../../contexts/ProductsListContext';
-import { IProduct } from '../../../../../types';
-import { ProductAutocompleteInputProps } from '../types';
-import TrashCanSVG from './../../../../../assets/trash-can.svg';
-import styles from './../ProductAutocomplete.module.css';
+import React, { useContext, useEffect, useRef } from "react";
+import { ProductsListContext } from "../../../../../contexts/ProductsListContext";
+import { IProduct } from "../../../../../types";
+import { ProductAutocompleteInputProps } from "../types";
+import TrashCanSVG from "./../../../../../assets/trash-can.svg";
+import styles from "./../ProductAutocomplete.module.css";
 
 const EditCartProductAutocomplete = ({
   cartProducts,
@@ -27,14 +27,14 @@ const EditCartProductAutocomplete = ({
         cartProducts.map((product, i) => {
           return i === index
             ? ({
-              id: Math.random(),
-              title: inputValue,
-              price: 0,
-              quantity: initProduct.quantity,
-              discountedPrice: 0,
-              discountPercentage: 0,
-              total: 0,
-            } as IProduct)
+                id: Math.random(),
+                title: inputValue,
+                price: 0,
+                quantity: initProduct.quantity,
+                discountedPrice: 0,
+                discountPercentage: 0,
+                total: 0,
+              } as IProduct)
             : product;
         })
       );
@@ -78,7 +78,10 @@ const EditCartProductAutocomplete = ({
   const handleSetProduct = (match: IProduct) => {
     setMatches([]);
     setInputValue(match.title);
-    const newProduct = { ...match, quantity: 1 } as IProduct;
+    const newProduct = {
+      ...match,
+      quantity: 1,
+    } as IProduct;
     const newCartsProducts = cartProducts.map((product, i) => (i === index ? newProduct : product));
     setCartsProducts(reduceDuplicatesToSingleValue([...newCartsProducts]));
   };
@@ -106,15 +109,32 @@ const EditCartProductAutocomplete = ({
     if (e.target.value > (productToEdit?.stock || 99)) e.target.value = productToEdit?.stock || 99;
     setCartsProducts(
       cartProducts.map((product) =>
-        product.id === productToEdit.id ? { ...product, quantity: Number(e.target.value) } : product
+        product.id === productToEdit.id
+          ? {
+              ...product,
+              quantity: Number(e.target.value),
+            }
+          : product
       )
     );
   };
 
   return (
     <div className={styles.productInputContainer}>
-      <label style={{ textAlign: `left`, width: `80%` }}>Product #{index + 1}</label>
-      <div style={{ display: `flex`, alignItems: `center` }}>
+      <label
+        style={{
+          textAlign: `left`,
+          width: `80%`,
+        }}
+      >
+        Product #{index + 1}
+      </label>
+      <div
+        style={{
+          display: `flex`,
+          alignItems: `center`,
+        }}
+      >
         <div className={styles.mainInputContainer}>
           <input
             className={`${styles.productInput} ${styles.editProductInput} ${
@@ -123,14 +143,16 @@ const EditCartProductAutocomplete = ({
             ref={inputRef}
             value={inputValue}
             disabled={isLoading}
-            onChange={handleInputChange}></input>
+            onChange={handleInputChange}
+          ></input>
           {matches[0] ? (
             <div className={styles.autocompleteDisplay}>
               {matches.slice(0, 5).map((match) => (
                 <div
                   key={match.id}
                   className={styles.autocompleteOption}
-                  onClick={() => handleSetProduct(match)}>
+                  onClick={() => handleSetProduct(match)}
+                >
                   {match.title}
                 </div>
               ))}
@@ -139,20 +161,22 @@ const EditCartProductAutocomplete = ({
         </div>
         <input
           className={styles.quantityInput}
-          type="number"
+          type='number'
           min={0}
           max={cartProducts[index].stock || 99}
           onChange={handleProductsQuantityChange}
           value={cartProducts[index]?.quantity.toString()}
-          disabled={isLoading}></input>
+          disabled={isLoading}
+        ></input>
 
         {!isLoading && cartProducts[index] ? (
           <button className={styles.productDeleteButton} onClick={handleDeleteProduct}>
             <img
               src={TrashCanSVG}
-              alt="Trash can"
+              alt='Trash can'
               className={styles.deleteSVG}
-              style={{ width: `18px` }}></img>
+              style={{ width: `18px` }}
+            ></img>
           </button>
         ) : null}
       </div>

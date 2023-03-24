@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from 'react';
-import { ProductsListContext } from '../contexts/ProductsListContext';
-import { IProduct } from '../types';
+import React, { useContext, useEffect } from "react";
+import { ProductsListContext } from "../contexts/ProductsListContext";
+import { IProduct } from "../types";
 
 const useValidateProducts = ({ productsToValidate }: { productsToValidate: IProduct[] }) => {
   const { productsList } = useContext(ProductsListContext);

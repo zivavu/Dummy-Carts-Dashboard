@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from 'react';
-import { CartsContext } from '../contexts/CartsContext';
+import React, { useContext, useEffect } from "react";
+import { CartsContext } from "../contexts/CartsContext";
 
 const useScrollToSelectedCart = () => {
   const { selectedCart } = useContext(CartsContext);

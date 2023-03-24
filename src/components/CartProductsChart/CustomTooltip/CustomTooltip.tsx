@@ -1,6 +1,6 @@
-import React from 'react';
-import { CustomTooltipProps } from '../types';
-import styles from './../CartProductsChart.module.css';
+import React from "react";
+import { CustomTooltipProps } from "../types";
+import styles from "./../CartProductsChart.module.css";
 
 const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
   const item = payload?.[0]?.payload;
@@ -19,7 +19,8 @@ const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
       <span
         className={`${styles.discountedPrice} ${
           hoveredOver === `discountedPrice` && styles.selected
-        }`}>
+        }`}
+      >
         Discounted To: {item.discountedTotal}$
       </span>
       {item.quantity === 1 ? null : (
