@@ -19,7 +19,7 @@ const EditCartDialog = ({ cartToEdit, setShowDialog }: EditCartDialogProps) => {
   };
 
   const isProductValid = (product: IProduct) => {
-    const { id, price, quantity, title, total } = product;
+    const { id, price, quantity, title } = product;
     return !!(id && price && quantity && title) ? true : false;
   };
 
@@ -28,16 +28,17 @@ const EditCartDialog = ({ cartToEdit, setShowDialog }: EditCartDialogProps) => {
     setIsLoading(true);
     try {
       const validProducts = [...cartProducts.filter((product) => isProductValid(product))];
-      const productsToRequers = validProducts.map((product) => ({
+      const productsToRequest = validProducts.map((product) => ({
         id: product.id,
         quantity: product.quantity || 1,
       }));
       setCartsProducts(validProducts);
+      console.log(validProducts);
       const data = await fetch(`https://dummyjson.com/carts/${cartToEdit.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          products: validProducts,
+          products: productsToRequest,
         }),
       });
       const cartResponse = (await data.json()) as ICart;
@@ -58,7 +59,7 @@ const EditCartDialog = ({ cartToEdit, setShowDialog }: EditCartDialogProps) => {
   const showEmptyInputBox = cartProducts.length < 5 && !isLoading;
 
   return (
-    <DialogBase clickAwayHandler={clickAwayHandler} title="Edit Cart">
+    <DialogBase clickAwayHandler={clickAwayHandler} title={`Edit Cart #${cartToEdit.id}`}>
       <form
         className={dialogStyles.dialogForm}
         onSubmit={(e) => {

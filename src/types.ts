@@ -16,4 +16,5 @@ export interface IProduct {
   discountPercentage?: number;
   quantity: number;
   total?: number;
+  stock?: number;
 }

@@ -6,6 +6,8 @@ const useGetAllProducts = () => {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  console.log(productsList);
+
   useEffect(() => {
     const fetchProducts = async () => {
       setIsLoading(true);

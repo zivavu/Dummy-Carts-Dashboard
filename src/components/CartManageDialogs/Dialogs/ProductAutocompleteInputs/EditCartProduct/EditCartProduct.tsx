@@ -102,12 +102,11 @@ const EditCartProductAutocomplete = ({
   };
 
   const handleProductsQuantityChange = (e: any) => {
-    if (e.target.value > 100) e.target.value = 99;
+    const productToEdit = cartProducts[index];
+    if (e.target.value > (productToEdit?.stock || 99)) e.target.value = productToEdit?.stock || 99;
     setCartsProducts(
       cartProducts.map((product, i) =>
-        product.id === cartProducts[index].id
-          ? { ...product, quantity: Number(e.target.value) }
-          : product
+        product.id === productToEdit.id ? { ...product, quantity: Number(e.target.value) } : product
       )
     );
   };
@@ -142,7 +141,7 @@ const EditCartProductAutocomplete = ({
           className={styles.quantityInput}
           type="number"
           min={0}
-          max={100}
+          max={cartProducts[index].stock || 99}
           onChange={handleProductsQuantityChange}
           value={cartProducts[index]?.quantity.toString()}
           disabled={isLoading}></input>
