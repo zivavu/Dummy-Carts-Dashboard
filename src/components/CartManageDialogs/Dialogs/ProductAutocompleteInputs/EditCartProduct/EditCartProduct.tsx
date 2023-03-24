@@ -27,14 +27,14 @@ const EditCartProductAutocomplete = ({
         cartProducts.map((product, i) => {
           return i === index
             ? ({
-                id: Math.random(),
-                title: inputValue,
-                price: 0,
-                quantity: initProduct.quantity,
-                discountedPrice: 0,
-                discountPercentage: 0,
-                total: 0,
-              } as IProduct)
+              id: Math.random(),
+              title: inputValue,
+              price: 0,
+              quantity: initProduct.quantity,
+              discountedPrice: 0,
+              discountPercentage: 0,
+              total: 0,
+            } as IProduct)
             : product;
         })
       );
@@ -105,7 +105,7 @@ const EditCartProductAutocomplete = ({
     const productToEdit = cartProducts[index];
     if (e.target.value > (productToEdit?.stock || 99)) e.target.value = productToEdit?.stock || 99;
     setCartsProducts(
-      cartProducts.map((product, i) =>
+      cartProducts.map((product) =>
         product.id === productToEdit.id ? { ...product, quantity: Number(e.target.value) } : product
       )
     );
@@ -113,8 +113,8 @@ const EditCartProductAutocomplete = ({
 
   return (
     <div className={styles.productInputContainer}>
-      <label style={{ textAlign: 'left', width: '80%' }}>Product #{index + 1}</label>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+      <label style={{ textAlign: `left`, width: `80%` }}>Product #{index + 1}</label>
+      <div style={{ display: `flex`, alignItems: `center` }}>
         <div className={styles.mainInputContainer}>
           <input
             className={`${styles.productInput} ${styles.editProductInput} ${
@@ -152,7 +152,7 @@ const EditCartProductAutocomplete = ({
               src={TrashCanSVG}
               alt="Trash can"
               className={styles.deleteSVG}
-              style={{ width: '18px' }}></img>
+              style={{ width: `18px` }}></img>
           </button>
         ) : null}
       </div>

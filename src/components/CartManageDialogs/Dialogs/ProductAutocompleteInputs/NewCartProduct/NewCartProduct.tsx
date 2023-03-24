@@ -14,7 +14,7 @@ const NewCartProductAutocomplete = ({
 }: ProductAutocompleteInputProps) => {
   const { productsList } = useContext(ProductsListContext);
 
-  const [inputValue, setInputValue] = React.useState(initProduct?.title || '');
+  const [inputValue, setInputValue] = React.useState(initProduct?.title || ``);
   const [matches, setMatches] = React.useState<IProduct[]>([]);
 
   const handleInputChange = (e: any) => {
@@ -49,7 +49,7 @@ const NewCartProductAutocomplete = ({
 
   const handleSetProduct = (match: IProduct) => {
     setMatches([]);
-    setInputValue('');
+    setInputValue(``);
     const newProduct = { ...match, quantity: 1 };
     setCartsProducts(reduceDuplicatesToSingleValue([...cartProducts, newProduct]));
   };
@@ -75,7 +75,7 @@ const NewCartProductAutocomplete = ({
   const handleProductsQuantityChange = (e: any) => {
     if (e.target.value > 100) e.target.value = 99;
     setCartsProducts(
-      cartProducts.map((product, i) =>
+      cartProducts.map((product) =>
         product.id === cartProducts[index].id
           ? { ...product, quantity: Number(e.target.value) }
           : product
@@ -85,8 +85,8 @@ const NewCartProductAutocomplete = ({
 
   return (
     <div className={styles.productInputContainer}>
-      <label style={{ textAlign: 'left', width: '80%' }}>Product #{index + 1}</label>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+      <label style={{ textAlign: `left`, width: `80%` }}>Product #{index + 1}</label>
+      <div style={{ display: `flex`, alignItems: `center` }}>
         <div className={styles.mainInputContainer}>
           <input
             className={styles.productInput}
@@ -122,7 +122,7 @@ const NewCartProductAutocomplete = ({
               src={TrashCanSVG}
               alt="Trash can"
               className={styles.deleteSVG}
-              style={{ width: '18px' }}></img>
+              style={{ width: `18px` }}></img>
           </button>
         ) : null}
       </div>

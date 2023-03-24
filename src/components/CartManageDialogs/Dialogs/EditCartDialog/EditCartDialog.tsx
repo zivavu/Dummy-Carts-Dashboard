@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { CartsContext } from '../../../../contexts/CartsContext';
 import { ICart, IProduct } from '../../../../types';
 import DialogBase from '../../DialogBase/DialogBase';
@@ -20,7 +20,7 @@ const EditCartDialog = ({ cartToEdit, setShowDialog }: EditCartDialogProps) => {
 
   const isProductValid = (product: IProduct) => {
     const { id, price, quantity, title } = product;
-    return !!(id && price && quantity && title) ? true : false;
+    return id && price && quantity && title ? true : false;
   };
 
   const handleCartUpdate = async () => {
@@ -35,8 +35,8 @@ const EditCartDialog = ({ cartToEdit, setShowDialog }: EditCartDialogProps) => {
       setCartsProducts(validProducts);
       console.log(validProducts);
       const data = await fetch(`https://dummyjson.com/carts/${cartToEdit.id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        method: `PUT`,
+        headers: { 'Content-Type': `application/json` },
         body: JSON.stringify({
           products: productsToRequest,
         }),

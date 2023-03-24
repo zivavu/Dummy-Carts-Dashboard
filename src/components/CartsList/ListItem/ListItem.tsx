@@ -34,7 +34,7 @@ const ListItem = ({ cart }: ListItemProps) => {
 
     try {
       const data = await fetch(`https://dummyjson.com/carts/${cart.id}`, {
-        method: 'DELETE',
+        method: `DELETE`,
       });
       const responseCart = await data.json();
       const newCarts = carts.filter((oldCart) => oldCart.id !== responseCart.id) as ICart[];
@@ -78,7 +78,7 @@ const ListItem = ({ cart }: ListItemProps) => {
             src={EditSVG}
             alt="Trash can"
             className={styles.editSVG}
-            style={{ width: '24px' }}></img>
+            style={{ width: `24px` }}></img>
         </button>
         <button
           onClick={handleCartDelete}
@@ -90,7 +90,7 @@ const ListItem = ({ cart }: ListItemProps) => {
             src={TrashCanSVG}
             alt="Trash can"
             className={styles.deleteSVG}
-            style={{ width: '19px' }}></img>
+            style={{ width: `19px` }}></img>
         </button>
       </div>
     </>

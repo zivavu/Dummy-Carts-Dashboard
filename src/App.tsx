@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styles from './App.module.css';
 import CartProductsChart from './components/CartProductsChart/CartProductsChart';
 import CartsList from './components/CartsList/CartsList';
@@ -13,7 +13,7 @@ function App() {
   const [selectedCart, setSelectedCart] = useState<ICart>();
 
   const { carts, setCarts } = useGetAllCarts();
-  const { productsList, isLoading: areProductsLoading, error, setError } = useGetAllProducts();
+  const { productsList, isLoading: areProductsLoading } = useGetAllProducts();
 
   return (
     <CartsContext.Provider value={{ carts, setCarts, selectedCart, setSelectedCart }}>

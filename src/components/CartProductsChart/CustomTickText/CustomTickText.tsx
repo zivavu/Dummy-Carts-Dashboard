@@ -8,7 +8,7 @@ const CustomTickText = (props: any) => {
     <Text
       x={x}
       y={y}
-      style={{ wordWrap: 'break-word', textTransform: 'capitalize' }}
+      style={{ wordWrap: `break-word`, textTransform: `capitalize` }}
       width={140}
       dominantBaseline="central"
       textAnchor="middle"
